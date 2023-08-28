@@ -109,6 +109,11 @@ section {
 }
 
 .gray-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
     color: var(--gray-color);
     font-family: Segoe UI;
     font-size: 13px;
@@ -145,7 +150,7 @@ section {
     height: 24px;
     border-radius: 24px 24px 0 0;
     background: #fff;
-    padding: 25px 0 0 0;
+    padding: 24px 0 0 0;
 }
 
 .header-elems {
@@ -250,7 +255,7 @@ section {
     border: none;
     padding: 0;
     cursor: pointer;
-    background-image: url(../src/Search.svg);
+    background-image: url(/src/Search.svg);
 
 }
 
@@ -273,9 +278,9 @@ section {
     display: block;
     width: 28px;
     height: 28px;
-    background-image: url(../src/icon-28.svg);
+    background-image: url(/src/icon-28.svg);
     background-repeat: no-repeat;
-    margin: 0px 0 0 15px;
+    margin: 1px 0 0 15px;
     padding: 14px;
 }
 
@@ -287,7 +292,7 @@ section {
     font-weight: 400;
     line-height: 16px;
     margin: 1px auto;
-    padding: 1px 1px 0 0;
+
 }
 
 .busket-icon {
@@ -295,7 +300,7 @@ section {
     display: block;
     width: 28px;
     height: 28px;
-    background-image: url(../src/busket.svg);
+    background-image: url(/src/busket.svg);
     background-repeat: no-repeat;
     justify-content: center;
     align-items: center;
@@ -348,6 +353,14 @@ section {
     flex: 1 0 0;
 }
 
+.basket-columns {
+    display: flex;
+    width: 891px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+}
+
 /* Чекбоксы */
 
 .custom-checkbox {
@@ -396,7 +409,7 @@ section {
     background: var(--checkbox-color);
 }
 
-.custom-checkbox__text {
+.header__text {
     color: var(--black-color);
     font-family: Segoe UI;
     font-size: 16px;
@@ -412,19 +425,20 @@ section {
     display: grid;
     width: 891px;
     gap: 16px;
+    margin-top: 1px;
 }
 
-.basket-list__header {
+.list__header {
     display: flex;
 }
 
-.basket-list__header-icon {
+.list__header-icon {
     width: 20px;
     margin-left: auto;
     padding: 2px 0;
 }
 
-.basket-list__header-icon::before {
+.list__header-icon::before {
     content: '-';
     display: block;
     font-size: 0;
@@ -443,6 +457,11 @@ section {
 
 
 .basket-list__items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    align-self: stretch;
     position: relative;
 }
 
@@ -465,6 +484,7 @@ section {
 .item-template {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 .list-item {
@@ -523,20 +543,19 @@ section {
 }
 
 
-
-.item-store {
-    margin-bottom: 2px;
-}
-
 .item-marketplace {
     display: flex;
     align-items: center;
     gap: 6px;
     align-self: stretch;
+    margin-top: -2px;
 }
 
 .item-info {
+    width: 20px;
+    height: 20px;
     background-image: url(/src/icon-20.svg);
+    background-repeat: no-repeat;
 }
 
 .list-item__price {
@@ -589,8 +608,8 @@ section {
     align-self: stretch;
 }
 
-/* Btn price block */
-.decreament {
+/* Btn counter block */
+.decrement {
     margin: 10px 0px 0px 4px;
     display: flex;
     width: 24px;
@@ -694,6 +713,7 @@ section {
     align-items: flex-start;
     gap: 0px;
     padding-right: 1px;
+    align-self: flex-end;
 }
 
 .line-through {
@@ -729,7 +749,7 @@ section {
 .sidebar-wrapper {
     display: flex;
     width: 429px;
-    padding: 16px 24px 24px 24px;
+    padding: 17px 24px 24px 24px;
     flex-direction: column;
     align-items: center;
     gap: 24px;
@@ -1062,4 +1082,30 @@ section {
     font-style: normal;
     font-weight: 400;
     line-height: 16px;
+}
+
+.missing-header {
+    color: var(--text-black, #000);
+    font-family: Segoe UI;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+
+}
+
+.long-price {
+    margin: 1px 1px 0 0;
+    color: var(--text-black, #000);
+    text-align: right;
+    font-family: Segoe UI;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    display: flex;
+    /* width: 85px; */
+    height: 28px;
+    flex-direction: column;
+    justify-content: center;
 }

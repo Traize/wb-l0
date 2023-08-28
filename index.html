@@ -27,7 +27,7 @@
                 </div>
                 <div class="header__menu">
                     <div class="menu__item">
-                        <img src="" alt="" class="profile-icon">
+                        <div class="profile-icon"></div>
                         <p class="header-p">Профиль</p>
                     </div>
                     <div class="menu__item">
@@ -45,70 +45,76 @@
             <div class="basket__page-wrap">
                 <div class="basket__content">
                     <div class="h1">Корзина</div>
-                    <div class="basket__list">
-                        <div class="basket-list__header">
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="real-checkbox">
-                                <span class="custom-checkbox__decor"></span>
-                                <span class="custom-checkbox__text">Выбрать все</span>
-                            </label>
-                            <div class="basket-list__header-icon"></div>
-                        </div>
-                        <div class="basket-list__items">
-                            <div id="" class="item-template">
-                                <div class="list-item">
-                                    <div class="list-item__obj">
-                                        <div class="item-checkbox">
-                                            <label class="custom-checkbox">
-                                                <input type="checkbox" class="real-checkbox">
-                                                <span class="custom-checkbox__decor"></span>
-                                            </label>
+                    <div class="basket-columns">
+                        <section class="basket__list">
+                            <div class="list__header">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" class="real-checkbox">
+                                    <span class="custom-checkbox__decor"></span>
+                                    <span class="header__text">Выбрать все</span>
+                                </label>
+                                <div class="list__header-icon"></div>
+                            </div>
+                            <div id="basketList" class="basket-list__items">
+                                <!-- <div id="basketItem" class="item-template">
+                                    <div class="list-item">
+                                        <div class="list-item__obj">
+                                            <div class="item-checkbox">
+                                                <label class="custom-checkbox">
+                                                    <input type="checkbox" class="real-checkbox">
+                                                    <span class="custom-checkbox__decor"></span>
+                                                </label>
+                                            </div>
+                                            <img src="/src/busket-item/ItemPng1.png" class="item-img"></img>
                                         </div>
-                                        <div class="item-img">
-                                            <img src="/src/Frame 3853.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="list-item__description">
-                                        <div class="h3 item-title">Футболка UZcotton мужская</div>
-                                        <div class="h4 item__property">
-                                            <div>Цвет: белый</div>
-                                            <div>Размер: 56</div>
-                                        </div>
-                                        <div class="gray-text">
-                                            <div class="item-store">Коледино WB</div>
-                                            <div class="item-marketplace">
-                                                <div>OOO Вайлдберриз</div>
-                                                <img src="/src/icon-20.svg" alt="">
+                                        <div class="list-item__description">
+                                            <div id="itemTitle" class="h3 item-title">Футболка UZcotton мужская</div>
+                                            <div class="h4 item__property">
+                                                <div>Цвет: белый</div>
+                                                <div>Размер: 56</div>
+                                            </div>
+                                            <div class="gray-text">
+                                                <div class="item-store">Коледино WB</div>
+                                                <div class="item-marketplace">
+                                                    OOO Вайлдберриз
+                                                    <div class="item-info"></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="list-item__price-block">
-                                    <div class="price-block__counter">
-                                        <div class="counter">
-                                            <button class="decreament"></button>
-                                            <input type="text" class="count" value="1">
-                                            <button class="increment"></button>
+                                    <div class="list-item__price-block">
+                                        <div class="price-block__counter">
+                                            <div class="counter">
+                                                <button class="decreament"></button>
+                                                <input type="text" class="count" value="1">
+                                                <button class="increment"></button>
+                                            </div>
+                                            <div class="goods-left">Осталось 2 шт.</div>
+                                            <div class="goods-actions">
+                                                <button class="fav-btn"></button>
+                                                <button class="del-btn"></button>
+                                            </div>
                                         </div>
-                                        <div class="goods-left">Осталось 2 шт.</div>
-                                        <div class="goods-actions">
-                                            <button class="fav-btn"></button>
-                                            <button class="del-btn"></button>
+                                        <div class="price-block__money">
+                                            <div class="new-price">
+                                                <div class="h7 price-amount">522</div>
+                                                <div class="h6 price-currency">сом</div>
+                                            </div>
+                                            <div class="gray-text old-price">1051 сом
+                                                <span class="line-through"></span>
+                                                <span class="dashed-bottom"></span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="price-block__money">
-                                        <div class="new-price">
-                                            <div class="h7 price-amount">522</div>
-                                            <div class="h6 price-currency">сом</div>
-                                        </div>
-                                        <div class="gray-text old-price">1051 сом
-                                            <span class="line-through"></span>
-                                            <span class="dashed-bottom"></span>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> -->
                             </div>
-                        </div>
+                        </section>
+                        <section class="missing__list basket__list">
+                            <div class="list__header">
+                                <span class="h6 missing-header">Отсутствуют · 3 товара</span>
+                                <div class="list__header-icon"></div>
+                            </div>
+                        </section>
                     </div>
                 </div>
                 <div class="basket__sidebar">
@@ -205,7 +211,8 @@
         </div>
     </div>
     </div>
+    <script type="module" src="/js/main.js"></script>
 </body>
-<script src="/js/scripts.js"></script>
+
 
 </html>
