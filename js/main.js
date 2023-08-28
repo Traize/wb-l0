@@ -55,15 +55,12 @@ const newEl = model.map(item => {
 
 }).join(' ')
 
-if (model.props) {
-    console.log(model.props)
-}
 model.forEach(item => console.log(item.props))
 
 
 const el = document.querySelector('#basketList')
 el.insertAdjacentHTML("beforeend", newEl)
-const div = document.createElement('div')
+
 
 
 
