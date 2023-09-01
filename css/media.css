@@ -1,0 +1,164 @@
+@media screen and (min-width: 1024px) and (max-width: 1399px) {
+    .footer {
+        width: 1024px;
+    }
+
+    .layout-wrapper {
+        width: 1024px;
+    }
+
+    .header__search {
+        width: 594px;
+    }
+
+    .basket-columns {
+        width: 640px;
+    }
+
+    .basket__list {
+        width: 640px;
+    }
+
+    .missing__list {
+        width: 640px;
+    }
+
+    .recipient-body {
+        width: 590px;
+    }
+
+
+    .basket__sidebar {
+        width: 304px;
+    }
+
+    .shipping-icon {
+        margin-top: -3px;
+        width: 22px;
+        height: 22px;
+        background-image: url(/src/sidebar/priceShipping.svg);
+    }
+
+    .shipping-note {
+        position: absolute;
+        bottom: -2px;
+        right: -20px;
+    }
+
+    .shipping-text {
+        position: relative;
+        width: 75%;
+    }
+
+    .adress__shipping {
+
+        padding: 8px 8px 12px 8px;
+    }
+
+    .sidebar__order {
+        width: 255px
+    }
+
+    .outlined-text {
+        width: 90%;
+        margin-top: -1px;
+    }
+
+
+
+    .adress__header {
+        margin-bottom: -1px;
+    }
+
+    .u1 {
+        width: 68px
+    }
+
+    .u2 {
+        width: 76px;
+        left: 79px;
+        top: 17px;
+    }
+
+    .u3 {
+        width: 207px;
+        bottom: 14px;
+        right: 5px;
+    }
+
+    .adress__where {
+        margin-top: 2px;
+    }
+
+    .agree-text {
+        margin-top: 1px
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .footer {
+        width: 1400px;
+    }
+
+    .layout-wrapper {
+        width: 1400px;
+    }
+
+    .header__search {
+        width: 970px;
+    }
+
+    .basket-columns {
+        width: 891px;
+    }
+
+    .basket__list {
+        width: 891px;
+    }
+
+    .missing__list {
+        width: 891px;
+    }
+
+    .basket__sidebar {
+        width: 429px;
+    }
+
+    .recipient-body {
+        width: 700px;
+    }
+
+    .shipping-icon {
+        margin-top: -4px;
+        width: 22px;
+        height: 22px;
+    }
+
+    .shipping-note {
+        position: relative;
+    }
+
+    .adress__shipping {
+
+        padding: 8px 8px 10px 8px;
+    }
+
+    .u1 {
+        width: 68px
+    }
+
+    .u2 {
+        width: 52px;
+        left: 84px;
+    }
+
+    .u3 {
+        width: 214px;
+        bottom: 15px;
+        right: 68px;
+    }
+
+    .adress__where {
+        margin-top: 1px;
+    }
+}

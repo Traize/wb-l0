@@ -27,192 +27,312 @@
                 </div>
                 <div class="header__menu">
                     <div class="menu__item">
-                        <div class="profile-icon"></div>
-                        <p class="header-p">Профиль</p>
+                        <div class="menu__profile">
+                            <div class="profile-icon"></div>
+                        </div>
+                        <div class="header-p">Профиль</div>
                     </div>
+
                     <div class="menu__item">
-                        <div class="busket-icon">
-                            <div class="notification-wrapper">
-                                <span class="notification">3</span>
+                        <div class="menu__basket">
+                            <div class="basket-icon">
+                                <div class="notification-wrapper">
+                                    <span class="notification">3</span>
+                                </div>
                             </div>
                         </div>
-                        <p class="header-p">Корзина</p>
+                        <div class="header-p">Корзина</div>
+
                     </div>
                 </div>
             </div>
+            <div class="headline-background">
+                <div class="headline"></div>
+            </div>
         </header>
-        <div class="main__container">
-            <div class="basket__page-wrap">
-                <div class="basket__content">
-                    <div class="h1">Корзина</div>
-                    <div class="basket-columns">
-                        <section class="basket__list">
-                            <div class="list__header">
+        <div class="basket__page-wrap">
+            <div class="basket__content">
+                <div class="h1 basket-title">Корзина</div>
+                <div class="basket-columns">
+                    <div class="all-lists">
+                        <section class="basket__lists">
+                            <div id="listHeader" class="list__header">
                                 <label class="custom-checkbox">
-                                    <input type="checkbox" class="real-checkbox">
+                                    <input id="selectAll" type="checkbox" checked class="real-checkbox"
+                                        data-action="select-all">
                                     <span class="custom-checkbox__decor"></span>
-                                    <span class="header__text">Выбрать все</span>
+                                    <div class="checkbox-header__text">Выбрать все</div>
                                 </label>
-                                <div class="list__header-icon"></div>
+                                <div class="basket-list__opened">
+                                    <div class="total-items"></div>
+                                    <span>товаров ·</span>
+                                    <div class="total__sum">
+                                        <div class="sum"></div>
+                                        <div class="sum-currency">сом</div>
+                                    </div>
+                                </div>
+                                <div id="itemsAccordion" class="list__header-icon" data-name="accordion"></div>
                             </div>
                             <div id="basketList" class="basket-list__items">
-                                <!-- <div id="basketItem" class="item-template">
-                                    <div class="list-item">
-                                        <div class="list-item__obj">
-                                            <div class="item-checkbox">
-                                                <label class="custom-checkbox">
-                                                    <input type="checkbox" class="real-checkbox">
-                                                    <span class="custom-checkbox__decor"></span>
-                                                </label>
-                                            </div>
-                                            <img src="/src/busket-item/ItemPng1.png" class="item-img"></img>
+                            </div>
+                        </section>
+                        <div class="opened-underline"></div>
+                        <section class="missing__list basket__list">
+                            <div id="listHeader" class="list__header missing-header">
+                                <div class="h6 missing-header__title"><span> Отсутствуют · 3 товара</span></div>
+                                <div id="itemsAccordion" class="list__header-icon" data-name="accordion"></div>
+                            </div>
+                            <div id="missingItems" class="missing-items">
+                            </div>
+                        </section>
+                    </div>
+                    <section class="ordering__list basket__list">
+                        <div class="ordering__delivery">
+                            <div class="delivery-wrapper">
+                                <div class="ordering__header">
+                                    <div class="ordering__title">Способ доставки</div>
+                                    <div class="ordering__change-button">Изменить</div>
+                                </div>
+                                <div class="ordering__body">
+                                    <div class="orderding-colums__title">
+                                        <div class="destination">
+                                            <div class="ordering-title__text">Пункт выдачи</div>
                                         </div>
-                                        <div class="list-item__description">
-                                            <div id="itemTitle" class="h3 item-title">Футболка UZcotton мужская</div>
-                                            <div class="h4 item__property">
-                                                <div>Цвет: белый</div>
-                                                <div>Размер: 56</div>
+                                        <div class="delivery-price">
+                                            <div class="ordering-title__text">Стоимость доставки</div>
+                                        </div>
+                                        <div class="delivery-date">
+                                            <div class="ordering-title__text">5—6 февраля</div>
+                                        </div>
+                                        <div class="delivery-date">
+                                            <div class="ordering-title__text">7—8 февраля</div>
+                                        </div>
+                                    </div>
+                                    <div class="ordering-columns__description">
+                                        <div class="description-adress">
+                                            <div class="ordering-description__text">Бишкек, улица Ахматбека Суюмбаева,
+                                                12/1
                                             </div>
-                                            <div class="gray-text">
-                                                <div class="item-store">Коледино WB</div>
-                                                <div class="item-marketplace">
-                                                    OOO Вайлдберриз
-                                                    <div class="item-info"></div>
+                                            <div class="description-misc">
+                                                <div class="adress-rating">
+                                                    <div class="rating-icon"></div>
+                                                    <div class="rating">4.99</div>
+                                                </div>
+                                                <div class="adress-time adress-rating">Ежедневно с 10 до 21</div>
+                                            </div>
+                                        </div>
+                                        <div class="description__delivery-price">Бесплатно</div>
+                                        <div class="description__delivery-date">
+                                            <div class="delivery-date__items">
+                                                <div class="items-img">
+                                                    <div class="items-img__label">
+                                                        <div class="label-num">184</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="description__delivery-date">
+                                            <div class="delivery-date__items">
+                                                <div class="items-img">
+                                                    <div class="items-img__label">
+                                                        <div class="label-num">184</div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="list-item__price-block">
-                                        <div class="price-block__counter">
-                                            <div class="counter">
-                                                <button class="decreament"></button>
-                                                <input type="text" class="count" value="1">
-                                                <button class="increment"></button>
-                                            </div>
-                                            <div class="goods-left">Осталось 2 шт.</div>
-                                            <div class="goods-actions">
-                                                <button class="fav-btn"></button>
-                                                <button class="del-btn"></button>
-                                            </div>
-                                        </div>
-                                        <div class="price-block__money">
-                                            <div class="new-price">
-                                                <div class="h7 price-amount">522</div>
-                                                <div class="h6 price-currency">сом</div>
-                                            </div>
-                                            <div class="gray-text old-price">1051 сом
-                                                <span class="line-through"></span>
-                                                <span class="dashed-bottom"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </section>
-                        <section class="missing__list basket__list">
-                            <div class="list__header">
-                                <span class="h6 missing-header">Отсутствуют · 3 товара</span>
-                                <div class="list__header-icon"></div>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-                <div class="basket__sidebar">
-                    <div class="sidebar-wrapper">
-                        <div class="sidebar__order">
-                            <div class="order">
-                                <div class="order-price">
-                                    <div class="order-title h5">Итого</div>
-                                    <div class="sum-wrapper">
-                                        <div class="order-sum h5">2 101 063</div>
-                                        <div class="order-currency h7">сом</div>
-                                    </div>
-                                </div>
-                                <div class="order-description h3">
-                                    <div class="description__price description">
-                                        <div class="order-amount">203 товара</div>
-                                        <div class="sum-wrapper description-wrapper">
-                                            <div class="sum">2 302 048</div>
-                                            <div class="currency">сом</div>
-                                        </div>
-                                    </div>
-                                    <div class="description__discount description">
-                                        <div class="discount">Скидка</div>
-                                        <div class="sum-wrapper description-wrapper">
-                                            <div class="sum">−200 985</div>
-                                            <div class="currency">сом</div>
-                                        </div>
-                                    </div>
-                                    <div class="description__delivery description">
-                                        <div class="delivery">Доставка</div>
-                                        <div class="sum-wrapper description-wrapper">
-                                            <div class="sum">Бесплатно</div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="order__adress">
-                                <div class="adress-wrapper">
-                                    <div class="adress-header">
-                                        <div class="adress-title h6">Доставка в пункт выдачи</div>
-                                        <div class="adress-change-btn change-btn"></div>
-                                    </div>
-                                    <div class="adress-where h4">Бишкек, улица Ахматбека Суюмбаева, 12/1</div>
-                                    <div class="adress-date highlight-date">5–8 фев
-                                        <span class="dashed-bottom magneta"></span>
-                                    </div>
-                                </div>
-                                <div class="adress__shipping">
-                                    <div class="shipping-icon"></div>
-                                    <div class="shipping-text h4">Обратная доставка товаров на склад при отказе —
-                                        <div class="shipping-note h4">бесплатно
-                                            <span class="dashed-bottom green"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="order__payment">
-                                <div class="payment__wrapper">
-                                    <div class="payment-header">
-                                        <div class="payment-title h6">Оплата картой</div>
-                                        <div class="payment-change-btn change-btn"></div>
-                                    </div>
-                                    <div class="payment-desc">
-                                        <div class="payment-system"><span class="mir-icon"></span>
-                                        </div>
-                                        <div class="payment-card">1234 12•• •••• 1234</div>
-                                    </div>
-                                </div>
-                                <div class="payment-info">
-                                    <label class="custom-checkbox payment-checkbox">
-                                        <input type="checkbox" class="real-checkbox">
-                                        <span class="custom-checkbox__decor"></span>
-                                        <span class="custom-checkbox__text payment-text">Списать оплату сразу</span>
-                                    </label>
-                                    <div class="charge-off">Спишем оплату с карты при получении</div>
+                            <div class="delivery__returning">
+                                <div class="shipping-icon returning-icon"></div>
+                                <div class="returning-text h4">Обратная доставка товаров на склад при отказе —
+                                    <h10 class="shipping-note returning-note h4">бесплатно
+                                        <span class="dashed-bottom green"></span>
+                                    </h10>
                                 </div>
                             </div>
                         </div>
-                        <div class="sidebar-btn">
-                            <button class="order-btn">
-                                <div class="order-btn__text">Заказать</div>
-                            </button>
-                            <div class="order-agreement">
-                                <div class="agree-icon"></div>
-                                <div class="agree-text">
-                                    <p class="outlined-text">Соглашаюсь с правилами пользования торговой площадкой и
-                                        возврата</p>
+                        <div class="ordering__payment">
+                            <div class="payment-wrapper">
+                                <div class="ordering__header payment__header">
+                                    <div class="ordering__title">Способ оплаты</div>
+                                    <div class="ordering__change-button">Изменить</div>
                                 </div>
+                                <div class="payment-desc">
+                                    <div class="payment-system"><span class="mir-icon"></span>
+                                    </div>
+                                    <div class="body__payment-card">
+                                        <span>1234 12•• •••• 1234</span>
+                                        <span>01/30</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="charge-off body-charge">Спишем оплату с карты при получении</div>
+                        </div>
+                        <div class="ordering__recipient">
+                            <div class="ordering__header recipient-header">
+                                <div class="ordering__title">Получатель</div>
+                            </div>
+                            <div class="recipient-body">
+                                <div class="recipient__row">
+                                    <div class="recipient__input">
+                                        <label class="input-label"></label>
+                                        <div class="input-text name">
+                                            <input type="text" class="input-recipient" placeholder="Имя">
+                                            <span class="input-underline"></span>
+                                            <label class="name-error error"></label>
+                                        </div>
+                                    </div>
+                                    <div class="recipient__input surname">
+                                        <label class="input-label"></label>
+                                        <div class="input-text">
+                                            <input type="text" class="input-recipient" placeholder="Фамилия">
+                                            <span class="input-underline"></span>
+                                            <label class="name-error error"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="recipient__row">
+                                    <div class="recipient__input">
+                                        <label class="input-label"></label>
+                                        <div class="input-text mail">
+                                            <input type="text" class="input-recipient" placeholder="Почта">
+                                            <span class="input-underline"></span>
+                                            <label class="name-error error"></label>
+                                        </div>
+                                    </div>
+                                    <div class="recipient__input phone-number">
+                                        <label class="input-label"></label>
+                                        <div class="input-text">
+                                            <input type="text" class="input-recipient" placeholder="Телефон"
+                                                value="+7 988 123-45-67">
+                                            <span class="input-underline"></span>
+                                            <label class="name-error error"></label>
+                                        </div>
+                                    </div>
+                                    <div class="recipient__input inn">
+                                        <label class="input-label"></label>
+                                        <div class="input-text">
+                                            <input type="text" class="input-recipient" placeholder="ИНН">
+                                            <span class="input-underline"></span>
+                                            <label class="name-error error"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="basket__sidebar">
+                <div class="sidebar-wrapper">
+                    <div class="sidebar__order">
+                        <div class="order">
+                            <div class="order-price">
+                                <div class="order-title h5">Итого</div>
+                                <div class="sum-wrapper">
+                                    <div class="order-sum h5"></div>
+                                    <div class="order-currency h7">сом</div>
+                                </div>
+                            </div>
+                            <div class="order-description h3">
+                                <div class="description__price description">
+                                    <div class="order-amount"></div>
+                                    <div class="sum-wrapper description-wrapper">
+                                        <div class="total-without-discount sum"></div>
+                                        <div class="currency">сом</div>
+                                    </div>
+                                </div>
+                                <div class="description__discount description">
+                                    <div class="discount">Скидка</div>
+                                    <div class="sum-wrapper description-wrapper">
+                                        <div class="discount-total sum"></div>
+                                        <div class="currency">сом</div>
+                                    </div>
+                                </div>
+                                <div class="description__delivery description">
+                                    <div class="delivery">Доставка</div>
+                                    <div class="sum-wrapper description-wrapper">
+                                        <div class="sum">Бесплатно</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order__adress">
+                            <div class="adress-wrapper">
+                                <div class="adress-header">
+                                    <div class="adress-title h6">Доставка в пункт выдачи</div>
+                                    <div class="adress-change-btn change-btn"></div>
+                                </div>
+                                <div class="adress-where h4">Бишкек, улица Ахматбека Суюмбаева, 12/1</div>
+                                <div class="adress-date highlight-date">5–8 фев
+                                    <span class="dashed-bottom magneta"></span>
+                                </div>
+                            </div>
+                            <div class="adress__shipping">
+                                <div class="shipping-icon"></div>
+                                <div class="shipping-text h4">Обратная доставка товаров на склад при отказе —
+                                    <h10 class="shipping-note h4">бесплатно
+                                        <span class="dashed-bottom green"></span>
+                                    </h10>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order__payment">
+                            <div class="payment__wrapper">
+                                <div class="payment-header">
+                                    <div class="payment-title h6">Оплата картой</div>
+                                    <div class="payment-change-btn change-btn"></div>
+                                </div>
+                                <div class="payment-desc">
+                                    <div class="payment-system"><span class="mir-icon"></span>
+                                    </div>
+                                    <div class="payment-card">1234 12•• •••• 1234</div>
+                                </div>
+                            </div>
+                            <div class="payment-info">
+                                <label class="custom-checkbox payment-checkbox">
+                                    <input type="checkbox" class="real-checkbox">
+                                    <span class="custom-checkbox__decor"></span>
+                                    <div class="checkbox-header__text payment-text">Списать оплату сразу</div>
+                                </label>
+                                <div class="charge-off">Спишем оплату с карты при получении</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-btn">
+                        <button class="order-btn">
+                            <div class="order-btn__text">Заказать</div>
+                        </button>
+                        <div class="order-agreement">
+                            <div class="agree-icon"></div>
+                            <div class="agree-text">
+                                <p class="outlined-text">Соглашаюсь с правилами пользования торговой площадкой и
+                                    возврата
+                                    <span class="underline u1"></span>
+                                    <span class="underline u2"></span>
+                                    <span class="underline u3"></span>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <footer class="footer">
+            <div class="footline-background">
+                <div class="footline"></div>
+            </div>
+            <div class="footer-wrapper">
+                <div class="footer-box">
+                    <div class="footer-text">© 2022 &#x202F ООО «Товары и точка»</div>
+                </div>
+
+            </div>
+        </footer>
     </div>
     <script type="module" src="/js/main.js"></script>
 </body>
-
 
 </html>
