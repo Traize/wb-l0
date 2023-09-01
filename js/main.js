@@ -8,7 +8,7 @@ const basketList = document.querySelector('#basketList');
 const missingSection = document.querySelector('#missingItems')
 const basketListHeader = document.querySelector('.basket__lists');
 const sidebar = document.querySelector('.sidebar-wrapper')
-
+const recipientBody = document.querySelector('.recipient-body')
 
 basketList.insertAdjacentHTML('beforeend', newEl);
 missingSection.insertAdjacentHTML('beforeend', missingEl)
@@ -16,6 +16,7 @@ missingSection.insertAdjacentHTML('beforeend', missingEl)
 basketList.addEventListener('click', deleteItem)
 basketListHeader.addEventListener('click', isChecked)
 sidebar.addEventListener('click', paymentIsChecked)
+
 window.addEventListener('load', sidebarTotalSum)
 window.addEventListener('load', sidebarWithoutDiscount)
 window.addEventListener('load', sidebarTotalGoods)
@@ -86,59 +87,37 @@ basketList.addEventListener('click', function (event) {
         id = counterBlock.dataset.id
     }
     if (event.target.dataset.action === 'input') {
-        counter.oninput = function () {
-
-            if (1 < +counter.value < +model[id].stock) {
-                const totalPrice = parseInt(counter.value) * parseFloat(model[id].newPrice)
-                const discountPrice = parseInt(counter.value) * parseFloat(model[id].oldPrice)
-                sum = totalPrice
-                price.innerText = formatter.format(sum)
-                sumDiscount = discountPrice
-                discount.innerText = formatter.format(sumDiscount)
-                sidebarTotalSum()
-                sidebarWithoutDiscount()
-                calcDiscount()
-
-            }
+        counter.addEventListener('input', function (event) {
+            counter = event.target
             if (+counter.value >= +model[id].stock) {
                 counter.value = +model[id].stock
-
-                const totalPrice = parseInt(model[id].stock) * parseFloat(model[id].newPrice)
-                const discountPrice = parseInt(model[id].stock) * parseFloat(model[id].oldPrice)
-                sum = totalPrice
-                sumDiscount = discountPrice
-                price.innerText = formatter.format(sum)
-
-                discount.innerText = formatter.format(sumDiscount)
-                sidebarTotalSum()
-                sidebarWithoutDiscount()
-                calcDiscount()
             }
-
             if (+counter.value < 1) {
                 counter.value = 1
-                const totalPrice = parseInt(counter.value) * parseFloat(model[id].newPrice)
-                const discountPrice = parseInt(counter.value) * parseFloat(model[id].oldPrice)
-
-                sum = totalPrice
-                price.innerText = formatter.format(sum)
-                sumDiscount = discountPrice
-                discount.innerText = formatter.format(sumDiscount)
-                sidebarTotalSum()
-                sidebarWithoutDiscount()
-                calcDiscount()
             }
+
+            const totalPrice = parseInt(counter.value) * parseFloat(model[id].newPrice)
+            const discountPrice = parseInt(counter.value) * parseFloat(model[id].oldPrice)
+            sum = totalPrice
+            price.innerText = formatter.format(sum)
+            sumDiscount = discountPrice
+            discount.innerText = formatter.format(sumDiscount)
+            sidebarTotalSum()
+            sidebarWithoutDiscount()
+            calcDiscount()
             priceClass(price)
-        }
+        })
+
+
+
     }
     if (event.target.dataset.action === 'decrement') {
         if (+counter.value > 1) {
             counter.value = --counter.value
-            //Цена со скидкой
+            console.log('dick')
             const totalPrice = parseInt(counter.value) * parseFloat(model[id].newPrice)
             sum = totalPrice
             price.innerText = formatter.format(sum)
-            // Цена без скидки
             const discountPrice = parseInt(counter.value) * parseFloat(model[id].oldPrice)
             sumDiscount = discountPrice
             discount.innerText = formatter.format(sumDiscount)
@@ -151,6 +130,7 @@ basketList.addEventListener('click', function (event) {
             counter.value = +model[id].stock
             counter.value = --counter.value
             //Цена со скидкой
+            console.log('dick2')
             const totalPrice = parseInt(counter.value) * parseFloat(model[id].newPrice)
             const discountPrice = parseInt(counter.value) * parseFloat(model[id].oldPrice)
             sum = totalPrice
@@ -162,6 +142,7 @@ basketList.addEventListener('click', function (event) {
             sidebarWithoutDiscount()
             priceClass(price)
             calcDiscount()
+
         }
 
     }
@@ -169,7 +150,7 @@ basketList.addEventListener('click', function (event) {
 
     if (event.target.dataset.action === 'increment') {
         if (counter.value < +model[id].stock) {
-
+            console.log('exrement')
             counter.value = ++counter.value
             const discountPrice = parseInt(counter.value) * parseFloat(model[id].oldPrice)
             const totalPrice = parseInt(counter.value) * parseFloat(model[id].newPrice)
@@ -285,3 +266,32 @@ function calcDiscount() {
     return el.innerText = '−' + (formatter.format(+totalDisc - +totalSum))
 }
 
+function nameValidate() {
+    const validateInput = recipientBody.querySelector('.name')
+    validateInput.addEventListener('keyup', function () {
+        this.value = this.value.replace(/[^\d]/g, "");
+    })
+
+}
+function surnameValidate() {
+
+}
+function mailValidate() {
+
+}
+function phoneValidate() {
+
+    const validateBody = recipientBody.querySelector('.phone-number')
+    const validateInput = validateBody.querySelector('.input-recipient')
+    const label = validateBody.querySelector('.input-label')
+    validateInput.addEventListener('keyup', function () {
+        this.value = this.value.replace(/[^\d]/g, "");
+        this.value ? label.innerText = this.placeholder : label.innerText = ''
+    })
+
+}
+function innValidate() {
+
+}
+
+phoneValidate()
