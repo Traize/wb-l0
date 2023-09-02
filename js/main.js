@@ -284,7 +284,7 @@ function nameValidate() {
 
 }
 function surnameValidate() {
-    const validateBody = recipientBody.querySelector('.phone-number')
+    const validateBody = recipientBody.querySelector('.surname')
     const validateInput = validateBody.querySelector('.input-recipient')
     const label = validateBody.querySelector('.input-label')
     validateInput.addEventListener('keyup', function () {
@@ -297,7 +297,7 @@ function surnameValidate() {
         }
         else {
             validateBody.querySelector('.input-underline').classList.add('red-underline')
-            validateBody.querySelector('.name-error').innerText = 'Укажите номер'
+            validateBody.querySelector('.name-error').innerText = 'Укажите фамилию'
         }
     })
 
@@ -322,21 +322,31 @@ function mailValidate() {
 
 }
 function phoneValidate() {
+    const valid = /^((\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{12}$/
     const validateBody = recipientBody.querySelector('.phone-number')
     const validateInput = validateBody.querySelector('.input-recipient')
     const label = validateBody.querySelector('.input-label')
+    validateInput.addEventListener('focus', function (){
+        if(this.value === '')
+        this.value = '+7'
+    })
     validateInput.addEventListener('keyup', function () {
         this.value ? label.innerText = this.placeholder : label.innerText = ''
-        const valid = /^\d+$/.test(this.value)
-        if (valid || this.value === '') {
+        
+        if (valid.test(this.value) || this.value === '') {
             validateBody.querySelector('.input-underline').classList.remove('red-underline')
             validateBody.querySelector('.name-error').innerText = ''
-
+            console.log(valid.test(this.value))
         }
         else {
             validateBody.querySelector('.input-underline').classList.add('red-underline')
-            validateBody.querySelector('.name-error').innerText = 'Укажите номер'
+            validateBody.querySelector('.name-error').innerText = 'Формат номера +79998887766'
+            this.value = phoneMask(this.value)
         }
+    })
+    validateInput.addEventListener('change' || 'submit', function(){
+        if(valid.test(this.value) && this.value.length === 10)
+        this.value = phoneMask(this.value)
     })
 
 }
@@ -344,21 +354,32 @@ function innValidate() {
     const validateBody = recipientBody.querySelector('.inn')
     const validateInput = validateBody.querySelector('.input-recipient')
     const label = validateBody.querySelector('.input-label')
-    validateInput.addEventListener('keyup', function () {
+    validateInput.addEventListener('input', function () {
         this.value ? label.innerText = this.placeholder : label.innerText = ''
-        const valid = /^\d+$/.test(this.value)
+        const valid = /^(?=^.{1,14}$)\d+$/.test(this.value)
         if (valid || this.value === '') {
             validateBody.querySelector('.input-underline').classList.remove('red-underline')
-            validateBody.querySelector('.name-error').innerText = 'Для таможенного оформления'
-
+            validateBody.querySelector('.name-error').classList.add('name-error-black')
+            validateBody.querySelector('.name-error').innerText = 'Для таможенного контроля'
+            
         }
         else {
+            validateBody.querySelector('.name-error').classList.remove('name-error-black')
             validateBody.querySelector('.input-underline').classList.add('red-underline')
             validateBody.querySelector('.name-error').innerText = 'Укажите ИНН'
+        
         }
     })
 
 }
-
+nameValidate()
+surnameValidate()
+innValidate()
 phoneValidate()
 mailValidate()
+
+function phoneMask(phone) {
+    const regex = /^(\d{3})(\d{3})(\d{2})(\d{2})$/;
+    const subst = "($1) $2-$3-$4";
+    return phone.replace(regex, subst);
+  }

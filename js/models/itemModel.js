@@ -1,7 +1,7 @@
 export const model = [
     {
         id: '0',
-        img: '/src/basket-item/ItemPng1.png',
+        img: './src/basket-item/ItemPng1.png',
         title: 'Футболка UZcotton мужская',
         props: {
             color: 'Цвет: белый',
@@ -17,7 +17,7 @@ export const model = [
     },
     {
         id: '1',
-        img: '/src/basket-item/case.png',
+        img: './src/basket-item/case.png',
         title: 'Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe',
         props: {
             color: 'Цвет: прозрачный',
@@ -33,7 +33,7 @@ export const model = [
     },
     {
         id: '2',
-        img: '/src/basket-item/pencil.png',
+        img: './src/basket-item/pencil.png',
         title: 'Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, <br>Faber-Castell',
         props: {
             color: '',

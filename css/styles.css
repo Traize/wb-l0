@@ -1,4 +1,4 @@
-@import url('/css/media.css');
+@import url('../css/media.css');
 
 html {
     box-sizing: border-box;
@@ -197,7 +197,7 @@ section {
 .logo {
     height: 56px;
     width: 106px;
-    background-image: url(/src/Лого\ WB.svg);
+    background-image: url(../src/Лого\ WB.svg);
     background-repeat: no-repeat;
 }
 
@@ -260,7 +260,7 @@ section {
     border: none;
     padding: 0;
     cursor: pointer;
-    background-image: url(/src/Search.svg);
+    background-image: url(../src/Search.svg);
 }
 
 .header__menu {
@@ -303,7 +303,7 @@ section {
     align-items: center;
     flex-shrink: 0;
 
-    background-image: url(/src/icon-28.svg);
+    background-image: url(../src/icon-28.svg);
     background-repeat: no-repeat;
 }
 
@@ -325,7 +325,7 @@ section {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    background-image: url(/src/basket.svg);
+    background-image: url(../src/basket.svg);
     background-repeat: no-repeat;
     margin: 1px 18px 1px 10px;
 
@@ -555,7 +555,7 @@ section {
     width: 100%;
     height: 1px;
     fill: var(--rulers-rulers, rgba(0, 0, 0, 0.10));
-    background-image: url(/src/basket-item/closedUnderline.svg);
+    background-image: url(../src/basket-item/closedUnderline.svg);
 }
 
 .closed-underline {
@@ -563,7 +563,7 @@ section {
     width: 100%;
     height: 1px;
     fill: var(--rulers-rulers, rgba(0, 0, 0, 0.10));
-    background-image: url(/src/basket-item/closedUnderline.svg);
+    background-image: url(../src/basket-item/closedUnderline.svg);
 }
 
 .basket-list__items {
@@ -691,7 +691,7 @@ section {
 .item-info {
     width: 20px;
     height: 20px;
-    background-image: url(/src/icon-20.svg);
+    background-image: url(../src/icon-20.svg);
     background-repeat: no-repeat;
 }
 
@@ -762,12 +762,12 @@ section {
     height: 24px;
     flex-direction: column;
     justify-content: center;
-    background-image: url(/src/basket-item/decBtnDisabled.svg);
+    background-image: url(../src/basket-item/decBtnDisabled.svg);
     border-radius: 8px;
 }
 
 .decrement:hover {
-    background-image: url(/src/basket-item/decBtnActive.svg);
+    background-image: url(../src/basket-item/decBtnActive.svg);
     background-color: var(--background-smoky);
 }
 
@@ -781,13 +781,13 @@ section {
     height: 24px;
     flex-direction: column;
     justify-content: center;
-    background-image: url(/src/basket-item/incBtnDisabled.svg);
+    background-image: url(../src/basket-item/incBtnDisabled.svg);
     border-radius: 8px;
 
 }
 
 .increment:hover {
-    background-image: url(/src/basket-item/incBtnActive.svg);
+    background-image: url(../src/basket-item/incBtnActive.svg);
     background-color: var(--background-smoky);
 }
 
@@ -795,22 +795,22 @@ section {
     background-color: var(--background-smoky);
     width: 20px;
     height: 20px;
-    background-image: url(/src/basket-item/favoriteBtnDisabled.svg);
+    background-image: url(../src/basket-item/favoriteBtnDisabled.svg);
 }
 
 .fav-btn:hover {
-    background-image: url(/src/basket-item/favoriteBtnActive.svg);
+    background-image: url(../src/basket-item/favoriteBtnActive.svg);
 }
 
 .del-btn {
     background-color: var(--background-smoky);
     width: 20px;
     height: 20px;
-    background-image: url(/src/basket-item/delBtnDisabled.svg);
+    background-image: url(../src/basket-item/delBtnDisabled.svg);
 }
 
 .del-btn:hover {
-    background-image: url(/src/basket-item/delBtnActive.svg);
+    background-image: url(../src/basket-item/delBtnActive.svg);
 }
 
 
@@ -918,7 +918,7 @@ section {
     top: 9px;
     width: 100%;
     position: absolute;
-    background: url(/src/basket-item/Line.svg);
+    background: url(../src/basket-item/Line.svg);
 }
 
 .dashed-bottom {
@@ -927,7 +927,7 @@ section {
     bottom: 0px;
     width: 100%;
     height: 2px;
-    background: url(/src/basket-item/Dash.svg);
+    background: url(../src/basket-item/Dash.svg);
     background-position-x: center;
 }
 
@@ -1051,7 +1051,7 @@ section {
 }
 
 .magneta {
-    background-image: url(/src/sidebar/magnetaDash.svg);
+    background-image: url(../src/sidebar/magnetaDash.svg);
 }
 
 .adress-header {
@@ -1069,7 +1069,7 @@ section {
     margin-top: 2px;
     width: 20px;
     height: 20px;
-    background-image: url(/src/sidebar/changeBtn.svg);
+    background-image: url(../src/sidebar/changeBtn.svg);
 }
 
 .adress-where {
@@ -1088,7 +1088,7 @@ section {
 }
 
 .shipping-icon {
-    background-image: url(/src/sidebar/priceShipping.svg);
+    background-image: url(../src/sidebar/priceShipping.svg);
 }
 
 .shipping-note {
@@ -1105,7 +1105,7 @@ section {
 }
 
 .green {
-    background-image: url(/src/sidebar/greenDash.svg);
+    background-image: url(../src/sidebar/greenDash.svg);
 }
 
 /* Блок оплаты */
@@ -1161,7 +1161,7 @@ section {
     width: 30px;
     height: 9.3333px;
     background: no-repeat;
-    background-image: url(/src/sidebar/mirIcon.svg);
+    background-image: url(../src/sidebar/mirIcon.svg);
 }
 
 .payment-card {
@@ -1265,7 +1265,7 @@ section {
 .agree-icon {
     width: 13px;
     height: 24px;
-    background-image: url(/src/sidebar/agreement.svg);
+    background-image: url(../src/sidebar/agreement.svg);
 }
 
 
@@ -1497,7 +1497,7 @@ section {
 .rating-icon {
     width: 12px;
     height: 12px;
-    background-image: url(/src/misc/rating-star.svg);
+    background-image: url(../src/misc/rating-star.svg);
     margin: 2px 0;
 }
 
@@ -1537,7 +1537,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url(/src/basket-item/ItemPng1.png);
+    background-image: url(../src/basket-item/ItemPng1.png);
 }
 
 .items-img__label {
@@ -1738,12 +1738,15 @@ section {
     outline: none;
     border: none;
     align-self: stretch;
-    color: var(--system-gray, #A0A0A4);
+    color: var(--black-color);
     font-family: Segoe UI;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
+}
+.input-recipient::placeholder{
+    color: var(--gray-color);
 }
 
 .input-underline {
@@ -1754,12 +1757,12 @@ section {
     align-self: stretch;
     stroke-width: 1px;
     bottom: 14px;
-    background-image: url(/src/misc/underline.svg);
+    background-image: url(../src/misc/underline.svg);
     stroke: var(--rulers-rulers-input, rgba(0, 0, 0, 0.20));
 }
 
 .red-underline {
-    background-image: url(/src/misc/red-underline.svg)
+    background-image: url(../src/misc/red-underline.svg)
 }
 
 .name-error {
@@ -1856,5 +1859,7 @@ section {
     border-left: none;
     border-right: none;
     border-top: none;
-
+}
+.name-error-black{
+    color: #000;
 }
