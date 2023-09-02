@@ -114,7 +114,7 @@ basketList.addEventListener('click', function (event) {
     if (event.target.dataset.action === 'decrement') {
         if (+counter.value > 1) {
             counter.value = --counter.value
-            console.log('dick')
+
             const totalPrice = parseInt(counter.value) * parseFloat(model[id].newPrice)
             sum = totalPrice
             price.innerText = formatter.format(sum)
@@ -130,7 +130,6 @@ basketList.addEventListener('click', function (event) {
             counter.value = +model[id].stock
             counter.value = --counter.value
             //Цена со скидкой
-            console.log('dick2')
             const totalPrice = parseInt(counter.value) * parseFloat(model[id].newPrice)
             const discountPrice = parseInt(counter.value) * parseFloat(model[id].oldPrice)
             sum = totalPrice
@@ -150,7 +149,6 @@ basketList.addEventListener('click', function (event) {
 
     if (event.target.dataset.action === 'increment') {
         if (counter.value < +model[id].stock) {
-            console.log('exrement')
             counter.value = ++counter.value
             const discountPrice = parseInt(counter.value) * parseFloat(model[id].oldPrice)
             const totalPrice = parseInt(counter.value) * parseFloat(model[id].newPrice)
@@ -267,31 +265,100 @@ function calcDiscount() {
 }
 
 function nameValidate() {
-    const validateInput = recipientBody.querySelector('.name')
+    const validateBody = recipientBody.querySelector('.name')
+    const validateInput = validateBody.querySelector('.input-recipient')
+    const label = validateBody.querySelector('.input-label')
     validateInput.addEventListener('keyup', function () {
-        this.value = this.value.replace(/[^\d]/g, "");
+        this.value ? label.innerText = this.placeholder : label.innerText = ''
+        const valid = /^[А-ЯЁ][а-яё]+$/.test(this.value)
+        if (valid || this.value === '') {
+            validateBody.querySelector('.input-underline').classList.remove('red-underline')
+            validateBody.querySelector('.name-error').innerText = ''
+
+        }
+        else {
+            validateBody.querySelector('.input-underline').classList.add('red-underline')
+            validateBody.querySelector('.name-error').innerText = 'Укажите имя'
+        }
     })
 
 }
 function surnameValidate() {
-
-}
-function mailValidate() {
-
-}
-function phoneValidate() {
-
     const validateBody = recipientBody.querySelector('.phone-number')
     const validateInput = validateBody.querySelector('.input-recipient')
     const label = validateBody.querySelector('.input-label')
     validateInput.addEventListener('keyup', function () {
-        this.value = this.value.replace(/[^\d]/g, "");
         this.value ? label.innerText = this.placeholder : label.innerText = ''
+        const valid = /^[А-ЯЁ][а-яё]+$/.test(this.value)
+        if (valid || this.value === '') {
+            validateBody.querySelector('.input-underline').classList.remove('red-underline')
+            validateBody.querySelector('.name-error').innerText = ''
+
+        }
+        else {
+            validateBody.querySelector('.input-underline').classList.add('red-underline')
+            validateBody.querySelector('.name-error').innerText = 'Укажите номер'
+        }
+    })
+
+}
+function mailValidate() {
+    const validateBody = recipientBody.querySelector('.mail')
+    const validateInput = validateBody.querySelector('.input-recipient')
+    const label = validateBody.querySelector('.input-label')
+    validateInput.addEventListener('keyup', function () {
+        this.value ? label.innerText = this.placeholder : label.innerText = ''
+        const valid = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(this.value)
+        if (valid || this.value === '') {
+            validateBody.querySelector('.input-underline').classList.remove('red-underline')
+            validateBody.querySelector('.name-error').innerText = ''
+
+        }
+        else {
+            validateBody.querySelector('.input-underline').classList.add('red-underline')
+            validateBody.querySelector('.name-error').innerText = 'Укажите почтовый ящик'
+        }
+    })
+
+}
+function phoneValidate() {
+    const validateBody = recipientBody.querySelector('.phone-number')
+    const validateInput = validateBody.querySelector('.input-recipient')
+    const label = validateBody.querySelector('.input-label')
+    validateInput.addEventListener('keyup', function () {
+        this.value ? label.innerText = this.placeholder : label.innerText = ''
+        const valid = /^\d+$/.test(this.value)
+        if (valid || this.value === '') {
+            validateBody.querySelector('.input-underline').classList.remove('red-underline')
+            validateBody.querySelector('.name-error').innerText = ''
+
+        }
+        else {
+            validateBody.querySelector('.input-underline').classList.add('red-underline')
+            validateBody.querySelector('.name-error').innerText = 'Укажите номер'
+        }
     })
 
 }
 function innValidate() {
+    const validateBody = recipientBody.querySelector('.inn')
+    const validateInput = validateBody.querySelector('.input-recipient')
+    const label = validateBody.querySelector('.input-label')
+    validateInput.addEventListener('keyup', function () {
+        this.value ? label.innerText = this.placeholder : label.innerText = ''
+        const valid = /^\d+$/.test(this.value)
+        if (valid || this.value === '') {
+            validateBody.querySelector('.input-underline').classList.remove('red-underline')
+            validateBody.querySelector('.name-error').innerText = 'Для таможенного оформления'
+
+        }
+        else {
+            validateBody.querySelector('.input-underline').classList.add('red-underline')
+            validateBody.querySelector('.name-error').innerText = 'Укажите ИНН'
+        }
+    })
 
 }
 
 phoneValidate()
+mailValidate()

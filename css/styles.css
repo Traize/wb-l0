@@ -1758,6 +1758,10 @@ section {
     stroke: var(--rulers-rulers-input, rgba(0, 0, 0, 0.20));
 }
 
+.red-underline {
+    background-image: url(/src/misc/red-underline.svg)
+}
+
 .name-error {
     min-height: 14px;
     align-self: stretch;
