@@ -91,7 +91,7 @@
                             <div class="delivery-wrapper">
                                 <div class="ordering__header">
                                     <div class="ordering__title">Способ доставки</div>
-                                    <div class="ordering__change-button">Изменить</div>
+                                    <div class="ordering__change-button" data-open-button="adress">Изменить</div>
                                 </div>
                                 <div class="ordering__body">
                                     <div class="orderding-colums__title">
@@ -156,13 +156,13 @@
                             <div class="payment-wrapper">
                                 <div class="ordering__header payment__header">
                                     <div class="ordering__title">Способ оплаты</div>
-                                    <div class="ordering__change-button">Изменить</div>
+                                    <div class="ordering__change-button" data-open-button="card">Изменить</div>
                                 </div>
                                 <div class="payment-desc">
                                     <div class="payment-system"><span class="mir-icon"></span>
                                     </div>
                                     <div class="body__payment-card">
-                                        <span>1234 12•• •••• 1234</span>
+                                        <span class="card-nums">1234 12•• •••• 1234</span>
                                         <span>01/30</span>
                                     </div>
                                 </div>
@@ -261,7 +261,7 @@
                             <div class="adress-wrapper">
                                 <div class="adress-header">
                                     <div class="adress-title h6">Доставка в пункт выдачи</div>
-                                    <div class="adress-change-btn change-btn"></div>
+                                    <div class="adress-change-btn change-btn" data-open-button="adress"></div>
                                 </div>
                                 <div class="adress-where h4">Бишкек, улица Ахматбека Суюмбаева, 12/1</div>
                                 <div class="adress-date highlight-date">5–8 фев
@@ -281,7 +281,7 @@
                             <div class="payment__wrapper">
                                 <div class="payment-header">
                                     <div class="payment-title h6">Оплата картой</div>
-                                    <div class="payment-change-btn change-btn"></div>
+                                    <div class="payment-change-btn change-btn" data-open-button="card"></div>
                                 </div>
                                 <div class="payment-desc">
                                     <div class="payment-system"><span class="mir-icon"></span>
@@ -318,7 +318,61 @@
                 </div>
             </div>
         </div>
+        <div id="adress" class="modal-screen none" data-modal>
+            <div class="modal-wrapper">
+                <div class="modal-header">
+                    <div class="modal-title">Способ доставки</div>
+                    <div class="close-btn" data-modal-close=></div>
+                </div>
+                <div class="modal-body__wrapper">
+                    <div class="modal__delivery-way">
+                        <div id="pickupTab" class="delivery-way__title current-tab" data-tab="pickUp">В пункт выдачи
+                        </div>
+                        <div id="courierTab" class="delivery-way__title" data-tab="courier">Курьером</div>
+                    </div>
+                    <form id="pickUp" class="modal-content">
+                        <div class="modal-content__title">Мои адреса</div>
+                        <div class="modal-footer">
+                            <div class="modal-btn__wrapper">
+                                <button class="modal-btn">
+                                    <p class="modal-btn-text"> Выбрать</p>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <form id="courier" class="modal-content none">
+                        <div class="modal-content__title">Мои адреса</div>
 
+                        <div class="modal-footer">
+                            <div class="modal-btn__wrapper">
+                                <button class="modal-btn">
+                                    <p class="modal-btn-text"> Выбрать</p>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="card" class="modal-screen none" data-modal>
+            <div class="modal-wrapper card-wrapper">
+                <div class="modal-header">
+                    <div class="modal-title">Способ оплаты</div>
+                    <div class="close-btn" data-modal-close=></div>
+                </div>
+                <div class="modal-body__wrapper">
+                    <form id="cardForm" class="card-content">
+                        <div class="modal-footer">
+                            <div class="modal-btn__wrapper card-btn__wrapper">
+                                <button class="modal-btn">
+                                    <p class="modal-btn-text"> Выбрать</p>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <footer class="footer">
             <div class="footline-background">
                 <div class="footline"></div>

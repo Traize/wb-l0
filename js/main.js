@@ -2,6 +2,8 @@ import { model } from './models/itemModel.js';
 import { missingEl } from './missingItemTemplate.js';
 import { newEl } from './itemTemplate.js';
 import { formatter } from './misc.js';
+import { courierAdress, pickupAdress } from './templates/modalTemplate.js';
+import { cardTemplate } from './templates/cardTemplate.js';
 
 
 const basketList = document.querySelector('#basketList');
@@ -9,7 +11,13 @@ const missingSection = document.querySelector('#missingItems')
 const basketListHeader = document.querySelector('.basket__lists');
 const sidebar = document.querySelector('.sidebar-wrapper')
 const recipientBody = document.querySelector('.recipient-body')
+const pickupTab = document.querySelector('#pickUp')
+const courierTab = document.querySelector('#courier')
+const cardModal = document.querySelector('#card')
 
+cardModal.querySelector('.card-content').insertAdjacentHTML('afterbegin', cardTemplate)
+courierTab.querySelector('.modal-content__title').insertAdjacentHTML('afterend', courierAdress)
+pickupTab.querySelector('.modal-content__title').insertAdjacentHTML('afterend', pickupAdress)
 basketList.insertAdjacentHTML('beforeend', newEl);
 missingSection.insertAdjacentHTML('beforeend', missingEl)
 
@@ -322,17 +330,20 @@ function mailValidate() {
 
 }
 function phoneValidate() {
-    const valid = /^((\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{12}$/
+    const valid = /\+7\d{3}\d{3}\d{2}\d{2}/
     const validateBody = recipientBody.querySelector('.phone-number')
     const validateInput = validateBody.querySelector('.input-recipient')
     const label = validateBody.querySelector('.input-label')
-    validateInput.addEventListener('focus', function (){
-        if(this.value === '')
-        this.value = '+7'
+    validateInput.addEventListener('focus', function () {
+        if (this.value === '') {
+            this.value = '+7'
+            validateBody.querySelector('.input-underline').classList.add('red-underline')
+            validateBody.querySelector('.name-error').innerText = 'Формат номера +79998887766'
+        }
     })
     validateInput.addEventListener('keyup', function () {
         this.value ? label.innerText = this.placeholder : label.innerText = ''
-        
+
         if (valid.test(this.value) || this.value === '') {
             validateBody.querySelector('.input-underline').classList.remove('red-underline')
             validateBody.querySelector('.name-error').innerText = ''
@@ -341,12 +352,12 @@ function phoneValidate() {
         else {
             validateBody.querySelector('.input-underline').classList.add('red-underline')
             validateBody.querySelector('.name-error').innerText = 'Формат номера +79998887766'
-            this.value = phoneMask(this.value)
+
         }
     })
-    validateInput.addEventListener('change' || 'submit', function(){
-        if(valid.test(this.value) && this.value.length === 10)
-        this.value = phoneMask(this.value)
+    validateInput.addEventListener('change' || 'submit' || 'input', function () {
+        if (valid.test(this.value) && this.value.length === 12)
+            this.value = phoneMask(this.value)
     })
 
 }
@@ -356,18 +367,17 @@ function innValidate() {
     const label = validateBody.querySelector('.input-label')
     validateInput.addEventListener('input', function () {
         this.value ? label.innerText = this.placeholder : label.innerText = ''
-        const valid = /^(?=^.{1,14}$)\d+$/.test(this.value)
+        const valid = /^(?=^.{14}$)\d+$/.test(this.value)
         if (valid || this.value === '') {
             validateBody.querySelector('.input-underline').classList.remove('red-underline')
             validateBody.querySelector('.name-error').classList.add('name-error-black')
             validateBody.querySelector('.name-error').innerText = 'Для таможенного контроля'
-            
+
         }
         else {
             validateBody.querySelector('.name-error').classList.remove('name-error-black')
             validateBody.querySelector('.input-underline').classList.add('red-underline')
-            validateBody.querySelector('.name-error').innerText = 'Укажите ИНН'
-        
+            validateBody.querySelector('.name-error').innerText = 'Укажите ИНН(14 цифр)'
         }
     })
 
@@ -379,7 +389,118 @@ phoneValidate()
 mailValidate()
 
 function phoneMask(phone) {
-    const regex = /^(\d{3})(\d{3})(\d{2})(\d{2})$/;
-    const subst = "($1) $2-$3-$4";
+    const regex = /(\+7)(\d{3})(\d{3})(\d{2})(\d{2})/g;
+    const subst = "$1 ($2) $3-$4-$5";
     return phone.replace(regex, subst);
-  }
+}
+//Модалка с адрессами
+const tabs = document.querySelectorAll('[data-tab]')
+const deliveryContents = document.querySelectorAll('.modal-content')
+const firstTab = document.querySelector('#pickupTab')
+const secondTab = document.querySelector('#courierTab')
+
+tabs.forEach(function (item) {
+    item.addEventListener('click', function () {
+        deliveryContents.forEach(function (item) {
+            item.classList.add('none')
+        })
+
+
+        const currentTab = document.querySelector('#' + this.dataset.tab)
+        currentTab.classList.remove('none');
+        this.classList.add('current-tab')
+        console.log(this.dataset.tab)
+        console.log(currentTab.id)
+        if (currentTab.id === firstTab.dataset.tab) {
+            this.classList.add('current-tab')
+            secondTab.classList.remove('current-tab')
+        }
+        if (currentTab.id === secondTab.dataset.tab) {
+            this.classList.add('current-tab')
+            firstTab.classList.remove('current-tab')
+        }
+    })
+})
+
+//Действия с модальными окнами
+const openModalButton = document.querySelectorAll('[data-open-button]')
+const allModals = document.querySelectorAll('[data-modal]')
+const closeModalButton = document.querySelectorAll('[data-modal-close]')
+openModalButton.forEach(function (item) {
+    item.addEventListener('click', function () {
+        const modalId = this.dataset.openButton
+        const modal = document.querySelector('#' + modalId)
+        modal.classList.remove('none')
+
+        modal.querySelector('.modal-wrapper').addEventListener('click', function (event) {
+            event.stopPropagation()
+        })
+    }
+    )
+})
+
+closeModalButton.forEach(function (item) {
+    item.addEventListener('click', function () {
+        const modal = this.closest('[data-modal]');
+        modal.classList.add('none')
+    })
+})
+
+allModals.forEach(function (item) {
+    item.addEventListener('click', function () {
+        this.classList.add('none')
+    })
+})
+
+const modalForms = document.querySelectorAll('.modal-content')
+modalForms.forEach(function (item) {
+    item.addEventListener('submit', function (event) {
+        event.preventDefault()
+        const modal = this.closest('[data-modal]')
+        modal.classList.add('none')
+
+        const allRadio = this.querySelectorAll('.radio-btn')
+        allRadio.forEach(item => {
+            if (item.checked) {
+                const checkedBody = item.closest('.custom-radio')
+                const textWrap = checkedBody.querySelector('.radio-text__wrapper')
+                const text = textWrap.querySelector('.radio-text').innerText
+                const ratingBlock = document.querySelector('.description-misc')
+                if (textWrap.querySelector('.rating')) {
+                    // const rating = textWrap.querySelector('.rating').innerText
+                    ratingBlock.classList.remove('none')
+                }
+                else {
+                    ratingBlock.classList.add('none')
+                }
+                document.querySelector('.ordering-description__text').innerText = text
+                document.querySelector('.adress-where').innerText = text
+            }
+        })
+    }
+    )
+})
+const cardForm = document.querySelector('.card-content')
+cardForm.addEventListener('submit', function (event) {
+    event.preventDefault()
+    const modal = this.closest('[data-modal]')
+    modal.classList.add('none')
+
+    const allRadio = this.querySelectorAll('.radio-btn')
+    allRadio.forEach(item => {
+        if (item.checked) {
+            const checkedBody = item.closest('.custom-radio')
+            const textWrap = checkedBody.querySelector('.radio-text__wrapper')
+            const text = textWrap.querySelector('.radio-text').innerText
+            const cardIcon = checkedBody.querySelector('.payment-system__wrapper')
+            const paymentDesc = document.querySelector('.payment-desc')
+            const cardIconBlock = document.querySelector('.payment-system')
+            cardIconBlock.innerHTML = cardIcon.innerHTML
+            document.querySelector('.card-nums').innerText = text
+            document.querySelector('.payment-card').innerText = text
+        }
+    })
+}
+)
+
+
