@@ -5,6 +5,7 @@ import { formatter } from './misc.js';
 import { courierAdress, pickupAdress } from './templates/modalTemplate.js';
 import { cardTemplate } from './templates/cardTemplate.js';
 import { deliveryPopup1, deliveryPopup2 } from './templates/freeDeliveryPopup.js';
+import { deliveryItem } from './templates/deliveryItemsTemplate.js';
 
 
 const basketList = document.querySelector('#basketList');
@@ -18,6 +19,8 @@ const cardModal = document.querySelector('#card')
 const modalWindow = document.querySelector('.modal-body__wrapper')
 const bodyDeliveryPopup = document.querySelector('#shippingNote1')
 const sidebarDeliveryPopup = document.querySelector('#shippingNote2')
+const deliveryItemsFirstDay = document.querySelector('.first-date')
+const deliveryItemsSecondDay = document.querySelector('.second-date')
 
 bodyDeliveryPopup.insertAdjacentHTML('beforeend', deliveryPopup1)
 sidebarDeliveryPopup.insertAdjacentHTML('beforeend', deliveryPopup2)
@@ -58,7 +61,6 @@ function deleteMissingItem(event) {
 function deleteAdress(event) {
     if (event.target.dataset.action === 'delete') {
         const parentItem = event.target.closest('.body-adress')
-        console.log(event.target)
         parentItem.remove()
     }
 }
@@ -242,12 +244,53 @@ function totalWithoutDiscount() {
 function totalGoods() {
     const goods = document.querySelectorAll('#inputCounter')
     let totalGoods = 0
-    let checkbox, currentItem
+    let checkbox, currentItem, id
+
     goods.forEach(function (item) {
         currentItem = item.closest('#basketItem')
         checkbox = currentItem.querySelector('#select-one')
         if (checkbox.checked) {
             totalGoods += (parseInt((item.value).replace(/\D/g, '')))
+            id = currentItem.dataset.id
+            //Отрисовка элементов в Способ доставки
+            const currentPicture = currentItem.querySelector('.item-img').getAttribute('src')
+            const newDeliveryItem = document.createElement('div')
+            newDeliveryItem.classList.add('delivery-item')
+            newDeliveryItem.innerHTML = deliveryItem
+            const image = newDeliveryItem.querySelector('.delivery-img')
+            image.setAttribute('src', currentPicture)
+            const nextDateGoods = parseInt(item.value) - parseInt(model[id].avilableAmount)
+            if (1 < item.value <= model[id].avilableAmount) {
+                const label = newDeliveryItem.querySelector('.label-num')
+                label.innerText = item.value
+            }
+            if (parseInt(item.value) === 1) {
+                newDeliveryItem.querySelector('.items-img__label').remove()
+            }
+            if (item.value > model[id].avilableAmount) {
+                const label = newDeliveryItem.querySelector('.label-num')
+                label.innerText = model[id].avilableAmount
+
+
+
+            }
+            deliveryItemsFirstDay.append(newDeliveryItem)
+
+            if (nextDateGoods > 0) {
+                document.querySelector('.second-title').classList.remove('none')
+                deliveryItemsSecondDay.classList.remove('none')
+
+                const secondDeliveryItem = document.createElement('div')
+                secondDeliveryItem.classList.add('delivery-item')
+                secondDeliveryItem.innerHTML = deliveryItem
+                const image = secondDeliveryItem.querySelector('.delivery-img')
+                image.setAttribute('src', currentPicture)
+
+                const label = secondDeliveryItem.querySelector('.label-num')
+                label.innerText = nextDateGoods
+                deliveryItemsSecondDay.append(secondDeliveryItem)
+            }
+
         }
     })
     return totalGoods
@@ -396,7 +439,7 @@ function phoneValidate() {
         if (valid.test(this.value) || this.value === '') {
             validateBody.querySelector('.input-underline').classList.remove('red-underline')
             validateBody.querySelector('.name-error').innerText = ''
-            console.log(valid.test(this.value))
+
         }
         else {
             validateBody.querySelector('.input-underline').classList.add('red-underline')
@@ -459,8 +502,7 @@ tabs.forEach(function (item) {
         const currentTab = document.querySelector('#' + this.dataset.tab)
         currentTab.classList.remove('none');
         this.classList.add('current-tab')
-        console.log(this.dataset.tab)
-        console.log(currentTab.id)
+
         if (currentTab.id === firstTab.dataset.tab) {
             this.classList.add('current-tab')
             secondTab.classList.remove('current-tab')
@@ -545,7 +587,9 @@ cardForm.addEventListener('submit', function (event) {
             const cardIcon = checkedBody.querySelector('.payment-system__wrapper')
             const paymentDesc = document.querySelector('.payment-desc')
             const cardIconBlock = document.querySelector('.payment-system')
+            const cardIconSideblock = document.querySelector('.sideblock-payment')
             cardIconBlock.innerHTML = cardIcon.innerHTML
+            cardIconSideblock.innerHTML = cardIcon.innerHTML
             document.querySelector('.card-nums').innerText = text
             document.querySelector('.payment-card').innerText = text
         }
@@ -567,19 +611,3 @@ allPopupsBtn.forEach(function (item) {
     }
 })
 
-
-function deliveryItems() {
-    const deliveryGrid = document.querySelector('.ordering-grid')
-    model.forEach(item => item.avilableAmount.forEach(function (item) {
-        const deliveryDate = deliveryGrid.querySelectorAll('.delivery-date')
-        let itemDate = item.date
-        deliveryDate.forEach(function(element){
-            if(element.innerText===''){
-                element.innerText = itemDate
-            }
-        })
-        if(deliveryDate.innerText === 'undefiend'){
-        console.log('deliveryDate')}
-    }))
-}
-deliveryItems(  )

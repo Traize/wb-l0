@@ -25,11 +25,7 @@ export const model = [
             profileDiscPercent: '10%',
             profileDiscNum: '100',
         },
-        avilableAmount: [{
-            date: '5—6 февраля',
-            amount: '2'
-        }],
-
+        avilableAmount: 184,
     },
     {
         id: '1',
@@ -57,16 +53,9 @@ export const model = [
             profileDiscPercent: '10%',
             profileDiscNum: '100',
         },
-        avilableAmount: [
-            {
-                date: '5—6 февраля',
-                amount: '186'
-            },
-            {
-                date: '7—8 февраля',
-                amount: '186'
-            }
-        ],
+        avilableAmount: 184,
+
+
     },
     {
         id: '2',
@@ -94,10 +83,7 @@ export const model = [
             profileDiscPercent: '10%',
             profileDiscNum: '100',
         },
-        avilableAmount: [{
-            date: '5—6 февраля',
-            amount: '2'
-        }],
+        avilableAmount: 184,
     }
 ]
 
