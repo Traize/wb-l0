@@ -221,7 +221,8 @@ function totalBasketSum() {
             const sidebarCheckbox = sidebar.querySelector('.real-checkbox')
             const sidebarBtn = sidebar.querySelector('.order-btn__text')
             if (sidebarCheckbox.checked) {
-                sidebarBtn.innerText = 'Оплатить ' + totalSum + ' cом'
+                const formatedSum = (formatter.format(totalSum))
+                sidebarBtn.innerText = 'Оплатить ' + formatedSum + ' cом'
             }
         }
     })
@@ -251,50 +252,51 @@ function totalGoods() {
         checkbox = currentItem.querySelector('#select-one')
         if (checkbox.checked) {
             totalGoods += (parseInt((item.value).replace(/\D/g, '')))
-            id = currentItem.dataset.id
-            //Отрисовка элементов в Способ доставки
-            const currentPicture = currentItem.querySelector('.item-img').getAttribute('src')
-            const newDeliveryItem = document.createElement('div')
-            newDeliveryItem.classList.add('delivery-item')
-            newDeliveryItem.innerHTML = deliveryItem
-            const image = newDeliveryItem.querySelector('.delivery-img')
-            image.setAttribute('src', currentPicture)
-            const nextDateGoods = parseInt(item.value) - parseInt(model[id].avilableAmount)
-            if (1 < item.value <= model[id].avilableAmount) {
-                const label = newDeliveryItem.querySelector('.label-num')
-                label.innerText = item.value
-            }
-            if (parseInt(item.value) === 1) {
-                newDeliveryItem.querySelector('.items-img__label').remove()
-            }
-            if (item.value > model[id].avilableAmount) {
-                const label = newDeliveryItem.querySelector('.label-num')
-                label.innerText = model[id].avilableAmount
-
-
-
-            }
-            deliveryItemsFirstDay.append(newDeliveryItem)
-
-            if (nextDateGoods > 0) {
-                document.querySelector('.second-title').classList.remove('none')
-                deliveryItemsSecondDay.classList.remove('none')
-
-                const secondDeliveryItem = document.createElement('div')
-                secondDeliveryItem.classList.add('delivery-item')
-                secondDeliveryItem.innerHTML = deliveryItem
-                const image = secondDeliveryItem.querySelector('.delivery-img')
-                image.setAttribute('src', currentPicture)
-
-                const label = secondDeliveryItem.querySelector('.label-num')
-                label.innerText = nextDateGoods
-                deliveryItemsSecondDay.append(secondDeliveryItem)
-            }
-
+            
+            initialDeliveryCheck(currentItem,id, item)
         }
     })
     return totalGoods
 }
+//Отрисовка элементов в Способ доставки
+function initialDeliveryCheck(currentItem,id, item){
+    id = currentItem.dataset.id
+    // создание элементов
+    const currentPicture = currentItem.querySelector('.item-img').getAttribute('src')
+    const newDeliveryItem = document.createElement('div')
+    newDeliveryItem.classList.add('delivery-item')
+    newDeliveryItem.innerHTML = deliveryItem
+    const image = newDeliveryItem.querySelector('.delivery-img')
+    image.setAttribute('src', currentPicture)
+    const nextDateGoods = parseInt(item.value) - parseInt(model[id].avilableAmount)
+    // проверка элементов
+    if (1 < item.value <= model[id].avilableAmount) {
+        const label = newDeliveryItem.querySelector('.label-num')
+        label.innerText = item.value
+    }
+    if (parseInt(item.value) === 1) {
+        newDeliveryItem.querySelector('.items-img__label').remove()
+    }
+    if (item.value > model[id].avilableAmount) {
+        const label = newDeliveryItem.querySelector('.label-num')
+        label.innerText = model[id].avilableAmount
+    }
+    deliveryItemsFirstDay.append(newDeliveryItem)
+    // Cоздание элементов на следующую дату
+    if (nextDateGoods > 0) {
+        document.querySelector('.second-title').classList.remove('none')
+        deliveryItemsSecondDay.classList.remove('none')
+
+        const secondDeliveryItem = document.createElement('div')
+        secondDeliveryItem.classList.add('delivery-item')
+        secondDeliveryItem.innerHTML = deliveryItem
+        const image = secondDeliveryItem.querySelector('.delivery-img')
+        image.setAttribute('src', currentPicture)
+
+        const label = secondDeliveryItem.querySelector('.label-num')
+        label.innerText = nextDateGoods
+        deliveryItemsSecondDay.append(secondDeliveryItem)
+    }}
 function totalMissing() {
     const allMissingItems = missingSection.querySelectorAll('.missing-item')
     let totalCount = 0
@@ -329,7 +331,8 @@ function paymentIsChecked() {
     if (sidebarCheckbox.checked) {
         chargeOff.classList.add('none')
         const totalSum = totalBasketSum()
-        sidebarBtn.innerText = 'Оплатить ' + totalSum + ' cом'
+        const formatedSum = (formatter.format(totalSum))
+        sidebarBtn.innerText = 'Оплатить ' + formatedSum + ' cом'
     }
     else {
         chargeOff.classList.remove('none')
