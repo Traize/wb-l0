@@ -571,8 +571,13 @@ allPopupsBtn.forEach(function (item) {
 function deliveryItems() {
     const deliveryGrid = document.querySelector('.ordering-grid')
     model.forEach(item => item.avilableAmount.forEach(function (item) {
-        const deliveryDate = deliveryGrid.querySelector('.delivery-date')
-        console.log(deliveryGrid.lastElementChild)
+        const deliveryDate = deliveryGrid.querySelectorAll('.delivery-date')
+        let itemDate = item.date
+        deliveryDate.forEach(function(element){
+            if(element.innerText===''){
+                element.innerText = itemDate
+            }
+        })
         if(deliveryDate.innerText === 'undefiend'){
         console.log('deliveryDate')}
     }))
