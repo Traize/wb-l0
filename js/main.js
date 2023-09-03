@@ -184,6 +184,13 @@ function totalBasketSum() {
         checkbox = currentItem.querySelector('#select-one')
         if (checkbox.checked) {
             totalSum += (parseInt((item.innerText).replace(/\D/g, '')))
+
+            // Обовление внутри кнопки сайдбара
+            const sidebarCheckbox = sidebar.querySelector('.real-checkbox')
+            const sidebarBtn = sidebar.querySelector('.order-btn__text')
+            if (sidebarCheckbox.checked) {
+                sidebarBtn.innerText = 'Оплатить ' + totalSum + ' cом'
+            }
         }
     })
     return totalSum
@@ -229,7 +236,7 @@ function isChecked(event) {
     sidebarTotalSum()
 }
 
-function paymentIsChecked(event) {
+function paymentIsChecked() {
     const sidebarCheckbox = sidebar.querySelector('.real-checkbox')
     const sidebarBtn = sidebar.querySelector('.order-btn__text')
     const chargeOff = sidebar.querySelector('.charge-off')
@@ -355,7 +362,8 @@ function phoneValidate() {
 
         }
     })
-    validateInput.addEventListener('change' || 'submit' || 'input', function () {
+
+    validateInput.addEventListener('change' || 'input', function () {
         if (valid.test(this.value) && this.value.length === 12)
             this.value = phoneMask(this.value)
     })
@@ -371,7 +379,7 @@ function innValidate() {
         if (valid || this.value === '') {
             validateBody.querySelector('.input-underline').classList.remove('red-underline')
             validateBody.querySelector('.name-error').classList.add('name-error-black')
-            validateBody.querySelector('.name-error').innerText = 'Для таможенного контроля'
+            validateBody.querySelector('.name-error').innerText = 'Для таможенного оформления'
 
         }
         else {
@@ -390,7 +398,7 @@ mailValidate()
 
 function phoneMask(phone) {
     const regex = /(\+7)(\d{3})(\d{3})(\d{2})(\d{2})/g;
-    const subst = "$1 ($2) $3-$4-$5";
+    const subst = "$1 $2 $3-$4-$5";
     return phone.replace(regex, subst);
 }
 //Модалка с адрессами

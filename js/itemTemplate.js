@@ -26,7 +26,17 @@ export const newEl = model
                                 <div class="item-store">${item.store}</div>
                                 <div class="item-marketplace">
                                     ${item.marketplace}
-                                    <div class="item-info"></div>
+                                    <div class="item-info">
+                                        <div class="info-popup__wraper">
+                                            <div class="popup-background">
+                                                <div class="popup-text">
+                                                    <div class="info-company">${item.info.company}</div> 
+                                                    <div class="ogrn-company">ОГРН: ${item.info.ogrn}</div> 
+                                                    <div class="adress-company">${item.info.adress}</div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +45,7 @@ export const newEl = model
                             <div class="price-block__counter">
                                 <div id="counter" class="counter" data-id="${item.id}">
                                     <button id="decrementBtn" class="decrement" data-action="decrement"></button>
-                                    <input id="inputCounter" type="number" class="count" value="${item.defaultValue}" data-action="input">
+                                    <input id="inputCounter" type="number" class="count" value="${item.defaultValue}" pattern="{1,3}" data-action="input">
                                     <button id="incrementBtn" class="increment" data-action="increment"></button>
                                 </div>
                                 <div class="goods-left ${(+item.stock > 10) ? "goods-hidden" : ""}">Осталось ${item.stock} шт.</div>
@@ -54,6 +64,16 @@ export const newEl = model
                                     <div class="price-currency discount-currency">${item.currency}</div>
                                     <span class="line-through"></span>
                                     <span class="dashed-bottom discount-dash"></span>
+                                    <div class="item-info">
+                                        <div class="info-popup__wraper">
+                                            <div class="popup-background">
+                                                <div class="popup-text">
+                                                    <div class="info-percent">Скидка: ${item.discount.percent} <span class="perc-num">${item.discount.percentToNum}</span> сом</div> 
+                                                    <div class="info-percent">Скидка покупателя: ${item.discount.profileDiscPercent} <span class="perc-num">${item.discount.profileDiscNum}</span> сом</div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

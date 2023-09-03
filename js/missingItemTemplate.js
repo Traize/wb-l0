@@ -4,7 +4,7 @@ export const missingEl = missingModel
         return `<div id="missingItem" class="item-template missing-item">
                 <div class="list-item missing-list">
                     <div class="list-item__obj">
-                        <div class="img-wrapper"><img src="${item.img}" class="item-img"></img></div>
+                        <div class="img-wrapper"><img src="${item.img}" class="item-img missing-img"></img></div>
                     </div>
                         <div id="listItemDescription" class="list-item__description">
                             <div id="itemTitle" class="h3 item-title" data-model-item${item.id}>${item.title}</div>

@@ -14,6 +14,17 @@ export const model = [
         oldPrice: '1051',
         currency: 'сом',
         defaultValue: 1,
+        info: {
+            company: 'OOO «Вайлдберриз»',
+            ogrn: '1234567837148',
+            adress: 'Бишкек, улица Жукеева-Пудовкина, 77/1',
+        },
+        discount: {
+            percent: '55%',
+            percentToNum: '350',
+            profileDiscPercent: '10%',
+            profileDiscNum: '100',
+        }
     },
     {
         id: '1',
@@ -29,7 +40,18 @@ export const model = [
         newPrice: '10500.235',
         oldPrice: '11500.235',
         currency: 'сом',
-        defaultValue: 200
+        defaultValue: 200,
+        info: {
+            company: 'OOO «МЕГАПРОФСТИЛЬ»',
+            ogrn: '5167746237148',
+            adress: '129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34',
+        },
+        discount: {
+            percent: '55%',
+            percentToNum: '350',
+            profileDiscPercent: '10%',
+            profileDiscNum: '100',
+        }
     },
     {
         id: '2',
@@ -45,7 +67,18 @@ export const model = [
         newPrice: '247',
         oldPrice: '475',
         currency: 'сом',
-        defaultValue: 2
+        defaultValue: 2,
+        info: {
+            company: 'OOO «Вайлдберриз»',
+            ogrn: '1234567837148',
+            adress: 'Бишкек, улица Жукеева-Пудовкина, 77/1',
+        },
+        discount: {
+            percent: '55%',
+            percentToNum: '350',
+            profileDiscPercent: '10%',
+            profileDiscNum: '100',
+        }
     }
 ]
 
