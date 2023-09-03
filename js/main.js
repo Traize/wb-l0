@@ -4,6 +4,7 @@ import { newEl } from './itemTemplate.js';
 import { formatter } from './misc.js';
 import { courierAdress, pickupAdress } from './templates/modalTemplate.js';
 import { cardTemplate } from './templates/cardTemplate.js';
+import { deliveryPopup1, deliveryPopup2 } from './templates/freeDeliveryPopup.js';
 
 
 const basketList = document.querySelector('#basketList');
@@ -14,6 +15,14 @@ const recipientBody = document.querySelector('.recipient-body')
 const pickupTab = document.querySelector('#pickUp')
 const courierTab = document.querySelector('#courier')
 const cardModal = document.querySelector('#card')
+const modalWindow = document.querySelector('.modal-body__wrapper')
+const bodyDeliveryPopup = document.querySelector('#shippingNote1')
+const sidebarDeliveryPopup = document.querySelector('#shippingNote2')
+
+bodyDeliveryPopup.insertAdjacentHTML('beforeend', deliveryPopup1)
+sidebarDeliveryPopup.insertAdjacentHTML('beforeend', deliveryPopup2)
+
+
 
 cardModal.querySelector('.card-content').insertAdjacentHTML('afterbegin', cardTemplate)
 courierTab.querySelector('.modal-content__title').insertAdjacentHTML('afterend', courierAdress)
@@ -22,17 +31,34 @@ basketList.insertAdjacentHTML('beforeend', newEl);
 missingSection.insertAdjacentHTML('beforeend', missingEl)
 
 basketList.addEventListener('click', deleteItem)
+missingSection.addEventListener('click', deleteMissingItem)
 basketListHeader.addEventListener('click', isChecked)
 sidebar.addEventListener('click', paymentIsChecked)
+modalWindow.addEventListener('click', deleteAdress)
 
 window.addEventListener('load', sidebarTotalSum)
 window.addEventListener('load', sidebarWithoutDiscount)
 window.addEventListener('load', sidebarTotalGoods)
 window.addEventListener('load', calcDiscount)
+window.addEventListener('load', missingRecount)
 
 function deleteItem(event) {
     if (event.target.dataset.action === 'delete') {
         const parentItem = event.target.closest('#basketItem')
+        parentItem.remove()
+    }
+}
+function deleteMissingItem(event) {
+    if (event.target.dataset.action === 'delete') {
+        const parentItem = event.target.closest('#missingItem')
+        parentItem.remove()
+        missingRecount()
+    }
+}
+function deleteAdress(event) {
+    if (event.target.dataset.action === 'delete') {
+        const parentItem = event.target.closest('.body-adress')
+        console.log(event.target)
         parentItem.remove()
     }
 }
@@ -76,6 +102,10 @@ function toggleHeaderIcon(event) {
             underline.classList.remove('closed-underline')
             changedTitle.classList.remove('basket-list__closed')
             titleWithCheckbox.classList.remove('none')
+        }
+
+        if (missingSection.classList.contains('hidden-list')) {
+            missingRecount()
         }
 
 
@@ -222,7 +252,19 @@ function totalGoods() {
     })
     return totalGoods
 }
-
+function totalMissing() {
+    const allMissingItems = missingSection.querySelectorAll('.missing-item')
+    let totalCount = 0
+    allMissingItems.forEach(item => {
+        totalCount++
+    }
+    )
+    return totalCount
+}
+function missingRecount() {
+    let missingCounter = document.querySelector('#missingTotal')
+    missingCounter.innerText = totalMissing()
+}
 function isChecked(event) {
     const checkboxes = basketListHeader.querySelectorAll('#select-one')
     const headerCheckbox = basketListHeader.querySelector('#selectAll')
@@ -510,5 +552,29 @@ cardForm.addEventListener('submit', function (event) {
     })
 }
 )
+const allPopupsBtn = document.querySelectorAll('.popup')
+allPopupsBtn.forEach(function (item) {
+    item.onmouseenter = function (event) {
+        const currentPopup = this.querySelector('.info-popup__wraper')
+        let target = event.target
+        if (target === this) {
+            currentPopup.classList.remove('none')
+        }
+
+    }
+    item.onmouseleave = function (event) {
+        event.target.querySelector('.info-popup__wraper').classList.add('none')
+    }
+})
 
 
+function deliveryItems() {
+    const deliveryGrid = document.querySelector('.ordering-grid')
+    model.forEach(item => item.avilableAmount.forEach(function (item) {
+        const deliveryDate = deliveryGrid.querySelector('.delivery-date')
+        console.log(deliveryGrid.lastElementChild)
+        if(deliveryDate.innerText === 'undefiend'){
+        console.log('deliveryDate')}
+    }))
+}
+deliveryItems(  )

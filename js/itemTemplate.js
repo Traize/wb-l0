@@ -26,8 +26,8 @@ export const newEl = model
                                 <div class="item-store">${item.store}</div>
                                 <div class="item-marketplace">
                                     ${item.marketplace}
-                                    <div class="item-info">
-                                        <div class="info-popup__wraper">
+                                    <div class="item-info popup">
+                                        <div class="info-popup__wraper none">
                                             <div class="popup-background">
                                                 <div class="popup-text">
                                                     <div class="info-company">${item.info.company}</div> 
@@ -59,21 +59,21 @@ export const newEl = model
                                     <div class="h7 price-amount data-id=${item.id} ${(item.newPrice.length > 3) ? "amount-more" : ""}">${formatter.format(item.newPrice * item.defaultValue)}</div>
                                     <div class="h6 price-currency">${item.currency}</div>
                                 </div>
-                                <div class="gray-text old-price ${(item.oldPrice.length > 6) ? "old-price-big" : ''}">
+                                <div  class="gray-text popup old-price ${(item.oldPrice.length > 6) ? "old-price-big" : ''}">
                                     <div class="discount-price">${formatter.format((item.oldPrice * item.defaultValue))}</div>
                                     <div class="price-currency discount-currency">${item.currency}</div>
                                     <span class="line-through"></span>
                                     <span class="dashed-bottom discount-dash"></span>
-                                    <div class="item-info">
-                                        <div class="info-popup__wraper">
+                                        <div class="info-popup__wraper dicount-info__popup none">
                                             <div class="popup-background">
-                                                <div class="popup-text">
-                                                    <div class="info-percent">Скидка: ${item.discount.percent} <span class="perc-num">${item.discount.percentToNum}</span> сом</div> 
-                                                    <div class="info-percent">Скидка покупателя: ${item.discount.profileDiscPercent} <span class="perc-num">${item.discount.profileDiscNum}</span> сом</div> 
+                                                <div class="popup-text discount-popup">
+                                                    <div class="info-percent">Скидка: ${item.discount.percent}</div> 
+                                                    <div class="perc-num">${item.discount.percentToNum} ${item.currency}</div> 
+                                                    <div class="info-percent">Скидка покупателя: ${item.discount.profileDiscPercent}</div>
+                                                    <div class="perc-num">${item.discount.profileDiscNum} ${item.currency}</div> 
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

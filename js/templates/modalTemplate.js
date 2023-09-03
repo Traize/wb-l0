@@ -21,7 +21,7 @@ export const pickupAdress = pickupModel.map(item => {
                         </div>
                     </label>
                     <div class="radio-del__wrapper">
-                        <div class="del-btn radio-del"></div>
+                        <div class="del-btn radio-del" data-action="delete"></div>
                     </div>
                 </div>`
 }).join('')
@@ -39,7 +39,7 @@ export const courierAdress = courierModel.map(item => {
                         </div>
                     </label>
                     <div class="radio-del__wrapper">
-                        <div class="del-btn radio-del"></div>
+                        <div class="del-btn radio-del"data-action="delete"></div>
                     </div>
                 </div>`
 }).join('')
