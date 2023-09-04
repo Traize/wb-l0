@@ -1,5 +1,3 @@
-@import url('../css/media.css');
-
 html {
     box-sizing: border-box;
     font-family: 'Segoe UI', sans-serif;
@@ -59,6 +57,7 @@ section {
 
 
 .layout-wrapper {
+    width: 1400px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -138,6 +137,8 @@ section {
     line-height: 16px;
 }
 
+
+
 .header {
     display: flex;
     width: 100%;
@@ -157,6 +158,9 @@ section {
     align-self: stretch;
 }
 
+.header__container-mobile {
+    display: none;
+}
 
 
 .header-elems {
@@ -213,6 +217,7 @@ section {
 }
 
 .header__search {
+    width: 970px;
     position: relative;
     display: flex;
 
@@ -393,7 +398,7 @@ section {
 
 .basket-columns {
     display: flex;
-
+    width: 891px;
     flex-direction: column;
     align-items: flex-start;
     gap: 40px;
@@ -491,6 +496,7 @@ section {
 
 
 .basket__lists {
+    width: 891px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -882,10 +888,17 @@ section {
 }
 
 .goods-actions {
+    justify-content: flex-end;
     display: flex;
     gap: 16px;
     opacity: 0;
     transition: opacity 0.1s ease-in-out;
+}
+
+.counter__wrapper {
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
 }
 
 .new-price {
@@ -969,7 +982,7 @@ section {
 .basket__sidebar {
     margin-top: -13px;
     display: flex;
-
+    width: 429px;
     padding-bottom: 0px;
     flex-direction: column;
     align-items: center;
@@ -1110,13 +1123,16 @@ section {
     align-items: center;
     gap: 8px;
     align-self: stretch;
-
+    padding: 8px 8px 10px 8px;
     border-radius: 8px;
     background: var(--background-smoky, #F6F6FA);
 }
 
 .shipping-icon {
     background-image: url(../src/sidebar/priceShipping.svg);
+    margin-top: -4px;
+    width: 22px;
+    height: 22px;
 }
 
 .shipping-note {
@@ -1355,7 +1371,7 @@ section {
 /* Отсутствующие товары */
 .missing__list {
     display: flex;
-
+    width: 891px;
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
@@ -1371,7 +1387,7 @@ section {
 
 }
 
-.missing-items::before {
+/* .missing-items::before {
     content: ' ';
     top: -1px;
     position: absolute;
@@ -1384,7 +1400,7 @@ section {
     border-bottom: none;
     border-left: none;
     border-right: none;
-}
+} */
 
 .missing-items__actions {
     display: flex;
@@ -1419,38 +1435,42 @@ section {
 
 /* Оформление заказа */
 .ordering__list {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    align-self: stretch;
-    background-color: var(--background-smoky)
+    width: 100%;
 }
 
 .ordering__delivery {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 24px;
+    align-items: flex-start;
+    gap: 16px;
     align-self: stretch;
-    padding: 16px 0px 24px 0px;
-    background: var(--white-color, #FFF);
-    border-radius: 16px;
+    width: 100%;
 
 }
 
 .delivery-wrapper {
     display: flex;
+    padding: 16px 0px 24px 0px;
     flex-direction: column;
     align-items: center;
-    gap: 17px;
+    gap: 24px;
+    width: 100%;
+    background-color: white;
+    border-radius: 16px;
+}
+
+.delivery-content__wrapper {
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
     align-self: stretch;
 }
 
 /* Способ доставки */
 .ordering__header {
     display: flex;
-    padding: 0px 24px;
+    padding: 1px 24px;
     align-items: flex-start;
     gap: 10px;
     align-self: stretch;
@@ -1485,12 +1505,7 @@ section {
 }
 
 
-.ordering__body {
-    display: flex;
-    align-items: flex-start;
-    gap: 32px;
-    align-self: stretch;
-}
+
 
 .ordering-grid {
     display: grid;
@@ -1534,6 +1549,8 @@ section {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin-top: -1px;
+    padding-bottom: 1px;
 }
 
 .adress-rating {
@@ -1578,7 +1595,7 @@ section {
 
 .delivery-date__items {
     display: flex;
-    height: 56px;
+    min-height: 56px;
     align-items: flex-start;
     gap: 8px;
     margin-top: -1px;
@@ -1593,6 +1610,8 @@ section {
 .delivery-img {
     width: 40px;
     height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
 .description-text {
@@ -1612,6 +1631,10 @@ section {
     font-weight: 600;
     line-height: 24px;
 
+}
+
+.description-column {
+    margin-left: -1px;
 }
 
 .items-img {
@@ -1650,11 +1673,8 @@ section {
 }
 
 .description-adress {
-    display: flex;
-    width: 398px;
+    display: grid;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
     gap: 4px;
 }
 
@@ -1686,7 +1706,7 @@ section {
 .delivery__returning {
     display: flex;
     justify-content: flex-start;
-    padding: 0px 24px;
+    padding: 2px 24px 0 24px;
     align-items: center;
     gap: 8px;
     align-self: stretch;
@@ -1704,6 +1724,18 @@ section {
 
 .returning-note {
     margin: 0 4px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+    color: var(--system-green, #0CB477);
+    font-family: Segoe UI;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
 }
 
 /* Оплата заказа */
@@ -1761,10 +1793,10 @@ section {
 }
 
 .recipient-body {
+    width: 700px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
 }
 
 .recipient-header {
@@ -1859,7 +1891,7 @@ section {
 
 .footer {
     background-color: var(--violet-color);
-    width: 100%;
+    width: 1400px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -2345,4 +2377,718 @@ section {
 
 .name-error-black {
     color: #000;
+}
+
+.price-block__money-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 1399px) {
+
+    .footer {
+        width: 1024px;
+    }
+
+    .layout-wrapper {
+        width: 1024px;
+    }
+
+    .header__search {
+        width: 594px;
+    }
+
+    .basket-columns {
+        width: 640px;
+    }
+
+    .basket__list {
+        width: 640px;
+    }
+
+    .basket__lists {
+        width: 640px;
+    }
+
+    .missing__list {
+        width: 640px;
+    }
+
+    .recipient-body {
+        width: 590px;
+    }
+
+
+    .basket__sidebar {
+        width: 304px;
+    }
+
+    .shipping-icon {
+        margin-top: -3px;
+        width: 22px;
+        height: 22px;
+        background-image: url(../src/sidebar/priceShipping.svg);
+        background-repeat: no-repeat;
+    }
+
+    .shipping-note {
+        position: absolute;
+        bottom: -2px;
+        right: -20px;
+    }
+
+    .shipping-text {
+        position: relative;
+        width: 75%;
+    }
+
+    .adress__shipping {
+
+        padding: 8px 8px 12px 8px;
+    }
+
+    .sidebar__order {
+        width: 255px
+    }
+
+    .outlined-text {
+        width: 90%;
+        margin-top: -1px;
+    }
+
+    .all-lists {
+        width: 640px;
+    }
+
+    .adress__header {
+        margin-bottom: -1px;
+    }
+
+
+    .adress__where {
+        margin-top: 2px;
+    }
+
+    .agree-text {
+        margin-top: 1px
+    }
+
+    .shipping-text {
+        position: relative;
+    }
+
+    .shipping-note {
+        position: absolute;
+        top: 16px;
+        right: -20px;
+    }
+
+    .returning-text {
+        position: relative;
+    }
+
+    .returning-note {
+        position: absolute;
+        bottom: 0px;
+        right: -68px;
+    }
+
+    .shipping-text {
+        position: relative;
+    }
+
+    .shipping-note {
+        position: absolute;
+        top: 16px;
+        right: -20px;
+    }
+
+    .returning-text {
+        position: relative;
+    }
+
+
+    .u1 {
+        top: 16px;
+        right: 56px;
+        width: 79px;
+    }
+
+    .u2 {
+        bottom: 15px;
+        right: 84px;
+        width: 128px;
+    }
+
+    .u3 {
+        bottom: 15px;
+        right: 16px;
+        width: 54px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header__container {
+        display: none;
+    }
+
+    .header {
+        height: 56px;
+    }
+
+    .header__container-mobile {
+        display: flex;
+        height: 56px;
+        padding: 0px 13px;
+        align-items: center;
+        gap: 16px;
+        align-self: stretch;
+    }
+
+    .burger-mobile {
+        width: 28px;
+        height: 28px;
+        background: url(../src/mobile/burger.svg);
+    }
+
+    .logo-mobile {
+        display: flex;
+        padding: 11px 4px 21px 4px;
+        justify-content: center;
+        align-items: center;
+        flex: 1 0 0;
+        align-self: stretch;
+        color: var(--system-white, #FFF);
+        font-family: Segoe UI;
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+
+        font-variant: all-small-caps;
+        letter-spacing: 0.52px;
+    }
+
+    .search-mobile {
+        width: 28px;
+        height: 28px;
+        background: url(../src/mobile/search-mobile.svg);
+    }
+
+
+    .layout-wrapper {
+        width: 320px;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: transparent;
+    }
+
+    .footer {
+        width: 320px;
+    }
+
+    .basket-columns {
+        width: 320px;
+    }
+
+    .basket__list {
+        width: 288px;
+    }
+
+    .missing__list {
+        width: 288px;
+    }
+
+    .recipient-body {
+        width: 288px;
+        gap: 9px;
+    }
+
+
+    .basket__sidebar {
+        width: 320px;
+    }
+
+    .basket__page-wrap {
+        display: flex;
+        width: 320px;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        background: whitesmoke;
+        border-radius: 28px;
+    }
+
+    .all-lists {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        width: 288px;
+        gap: 48px;
+        margin: 0 auto;
+    }
+
+    .basket__content {
+        gap: 16px;
+        width: 320px
+    }
+
+    .basket__lists {
+        width: 288px;
+
+    }
+
+    .basket-list__items {
+        display: flex;
+        width: 288px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .list-item__obj {
+        display: flex;
+        gap: 0;
+        margin: 0px 0;
+        position: relative;
+        align-items: flex-start;
+    }
+
+    .list-item__price-block {
+        width: 288px;
+    }
+
+    .list-item__description {
+        gap: 0px;
+    }
+
+    .item-checkbox {
+        height: 22px;
+        position: absolute;
+        top: 3px;
+        left: 4px;
+    }
+
+    .item-template {
+        width: 288px;
+        display: flex;
+        gap: 1px;
+        flex-direction: column;
+        position: relative;
+        padding: 0 0 2px 0;
+        height: auto;
+    }
+
+    .list__header {
+        width: 286px;
+    }
+
+    .list-item {
+        width: 288px;
+    }
+
+
+    .item-marketplace {
+        display: none;
+    }
+
+    .price-block__counter {
+        display: flex;
+        height: 32px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: inherit;
+        gap: 0;
+    }
+
+    .counter {
+        width: 80px;
+        height: 32px;
+
+    }
+
+    .goods-left {
+        opacity: 1;
+
+    }
+
+    .goods-actions {
+        gap: 0;
+        opacity: 1;
+        transition: none;
+    }
+
+    .counter__wrapper {
+        gap: 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .fav-btn {
+        margin: 12px;
+    }
+
+    .del-btn {
+        margin: 12px;
+    }
+
+    .new-price {
+        margin-top: 0;
+    }
+
+    .count {
+        margin: 4px -2px;
+        color: var(--text-black, #000);
+        text-align: center;
+        width: 32px;
+        /* Мобильный сайт/Body-2 */
+        font-family: Segoe UI;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        /* 142.857% */
+    }
+
+    .increment {
+        margin: 4px 0 0 0;
+    }
+
+    .decrement {
+        margin: 4px 0 0 2px
+    }
+
+    .price-block__money {
+        display: none;
+    }
+
+    .price-block__money-mobile {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        max-height: 24px;
+        padding-bottom: 2px;
+        margin-bottom: 2px;
+    }
+
+
+
+    .h1 {
+        color: var(--text-black, #000);
+
+        /* Мобильный сайт/H2 */
+        font-family: Segoe UI;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px;
+        /* 140% */
+        letter-spacing: -0.2px;
+    }
+
+    .h7 {
+        color: var(--text-black, #000);
+        text-align: right;
+        font-family: Segoe UI;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        letter-spacing: -0.5px;
+    }
+
+    .h3 {
+        align-self: stretch;
+        color: var(--text-black, #000);
+        font-family: Segoe UI;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        /* 142.857% */
+        overflow: hidden;
+
+        max-height: 40px;
+    }
+
+    .item__property {
+        margin-top: 0px;
+        margin-bottom: 8px;
+    }
+
+    .item-title {
+        margin-bottom: 8px;
+    }
+
+    .item-img {
+        width: 80px;
+        height: 106px;
+    }
+
+    .basket-title {
+        margin-top: 6px;
+        padding-left: 16px;
+    }
+
+    .price-amount {
+        min-width: 0;
+        min-width: 0;
+    }
+
+    .basket-list__items::before {
+        content: none;
+    }
+
+    .item-template::before {
+        content: ' ';
+        top: -1px;
+        position: absolute;
+        display: block;
+        height: 1px;
+        width: 100%;
+        color: #000;
+        border: 1px solid;
+        opacity: 0.1;
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+    }
+
+    .missing-items__actions {
+        padding-top: 0;
+        width: 296px;
+    }
+
+    .missing__mobile-action {
+        height: 24px;
+        padding: 0;
+        margin: 0px 0 5px 0;
+    }
+
+    .missing-header {
+        margin: 1px 0px 0px 0px;
+    }
+
+    .ordering__title {
+        color: var(--text-black, #000);
+
+        font-family: Segoe UI;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px;
+
+        letter-spacing: -0.2px;
+    }
+
+    .ordering__header {
+        padding: 0;
+    }
+
+    .ordering__delivery {
+        width: 320px;
+    }
+
+    .delivery-wrapper {
+        padding: 14px 0 24px 0;
+    }
+
+    .ordering__header {
+        padding: 0 16px;
+    }
+
+    .ordering__change-button {
+        padding-top: 3px;
+    }
+
+    .delivery-content__wrapper {
+        gap: 9px;
+    }
+
+    .ordering-grid {
+        gap: 0;
+        display: flex;
+        padding: 0px 16px;
+        justify-items: start;
+        flex-direction: column;
+    }
+
+    .description-column {
+        margin-left: 0;
+        margin-bottom: 16px;
+    }
+
+    .first-title {
+        margin-bottom: 12px;
+    }
+
+    .delivery-date__items {
+        gap: 9px;
+    }
+
+    .items-img__label {
+        top: -9.003px;
+    }
+
+    .delivery-date__items {}
+
+    .second-title {
+        margin: 24px 0 12px 0;
+    }
+
+    .delivery__returning {
+        padding: 1px 24px 0 24px;
+        gap: 9px;
+    }
+
+    .shipping-icon {
+        width: 26px;
+        height: 23px;
+    }
+
+    .returning-text {
+        display: flex;
+        position: relative;
+    }
+
+    .returning-note {
+        position: absolute;
+        bottom: -2px;
+        right: 91px;
+    }
+
+    .ordering__payment {
+        padding: 12px 16px;
+    }
+
+    .payment__header {
+        padding: 0;
+    }
+
+    .payment-wrapper {
+        gap: 8px;
+    }
+
+    .ordering__recipient {
+        padding: 24px 16px 24px 16px;
+        gap: 2px;
+    }
+
+    .recipient-header {
+        padding: 0;
+    }
+
+    .recipient__row {
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+        align-self: stretch;
+        flex-direction: column
+    }
+
+    .recipient__input {
+        width: 100%;
+    }
+
+    .h5 {
+        color: var(--text-black, #000);
+
+        /* Сайт/Н3-new */
+        font-family: Segoe UI;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px;
+        /* 140% */
+        letter-spacing: -0.2px;
+    }
+
+    .sidebar-wrapper {
+        padding: 3px 16px;
+    }
+
+    .sidebar__order {
+        gap: 17px;
+    }
+
+    .order-currency {
+        color: var(--text-black, #000);
+
+        /* Сайт/Н3-new */
+        font-family: Segoe UI;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px;
+        /* 140% */
+        letter-spacing: -0.2px;
+    }
+
+    .order-description {
+        max-height: fit-content;
+        color: var(--text-black, #000);
+
+        /* Сайт/Body */
+        font-family: Segoe UI;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        /* 150% */
+    }
+
+    .adress-wrapper {
+        display: none;
+    }
+
+    .shipping-text {
+        position: relative;
+    }
+
+    .adress__shipping {
+        padding: 9px 8px 10px 8px;
+        gap: 9px;
+    }
+
+    .shipping-note {
+        position: absolute;
+        bottom: -3px;
+        right: -20px;
+    }
+
+    .delivery-popup2 {
+        left: -182px;
+    }
+
+    .payment__wrapper {
+        display: none;
+    }
+
+    .payment-info {
+        padding: 7px 8px 12px 8px;
+    }
+
+    .u1 {
+        top: 16px;
+        right: 32px;
+        width: 158px;
+    }
+
+    .u2 {
+        bottom: -1px;
+        right: 75px;
+        width: 194px;
+    }
+
+    .u3 {}
+
+    .modal-wrapper {
+        width: 320px;
+        height: auto;
+    }
 }
