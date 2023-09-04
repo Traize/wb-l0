@@ -44,6 +44,7 @@ window.addEventListener('load', sidebarWithoutDiscount)
 window.addEventListener('load', sidebarTotalGoods)
 window.addEventListener('load', calcDiscount)
 window.addEventListener('load', missingRecount)
+window.addEventListener('load', deliveryCardCheck)
 
 function deleteItem(event) {
     if (event.target.dataset.action === 'delete') {
@@ -252,38 +253,121 @@ function totalGoods() {
         checkbox = currentItem.querySelector('#select-one')
         if (checkbox.checked) {
             totalGoods += (parseInt((item.value).replace(/\D/g, '')))
-            
-            initialDeliveryCheck(currentItem,id, item)
+
+
         }
     })
+
     return totalGoods
 }
+initialDeliveryCardCreate()
 //Отрисовка элементов в Способ доставки
-function initialDeliveryCheck(currentItem,id, item){
-    id = currentItem.dataset.id
+function initialDeliveryCardCreate() {
+    const goods = document.querySelectorAll('#inputCounter')
+    let currentValue = 0
+    let checkbox, currentItem, id
+
     // создание элементов
-    const currentPicture = currentItem.querySelector('.item-img').getAttribute('src')
-    const newDeliveryItem = document.createElement('div')
-    newDeliveryItem.classList.add('delivery-item')
-    newDeliveryItem.innerHTML = deliveryItem
-    const image = newDeliveryItem.querySelector('.delivery-img')
-    image.setAttribute('src', currentPicture)
-    const nextDateGoods = parseInt(item.value) - parseInt(model[id].avilableAmount)
-    // проверка элементов
-    if (1 < item.value <= model[id].avilableAmount) {
-        const label = newDeliveryItem.querySelector('.label-num')
-        label.innerText = item.value
-    }
-    if (parseInt(item.value) === 1) {
-        newDeliveryItem.querySelector('.items-img__label').remove()
-    }
-    if (item.value > model[id].avilableAmount) {
-        const label = newDeliveryItem.querySelector('.label-num')
-        label.innerText = model[id].avilableAmount
-    }
-    deliveryItemsFirstDay.append(newDeliveryItem)
-    // Cоздание элементов на следующую дату
+    goods.forEach(function (item) {
+        currentItem = item.closest('#basketItem')
+        id = currentItem.dataset.id
+        checkbox = currentItem.querySelector('#select-one')
+        if (checkbox.checked) {
+            const currentPicture = currentItem.querySelector('.item-img').getAttribute('src')
+            const newDeliveryItem = document.createElement('div')
+            newDeliveryItem.classList.add('delivery-item')
+            newDeliveryItem.innerHTML = deliveryItem
+            newDeliveryItem.setAttribute('data-id', model[id].id)
+            const image = newDeliveryItem.querySelector('.delivery-img')
+            image.setAttribute('src', currentPicture)
+
+
+
+            deliveryItemsFirstDay.append(newDeliveryItem)
+            // проверка элементов
+            if (1 <= item.value <= model[id].avilableAmount) {
+                const label = newDeliveryItem.querySelector('.label-num')
+                label.innerText = item.value
+            }
+            if (parseInt(item.value) === 1) {
+                newDeliveryItem.querySelector('.items-img__label').classList.add('none')
+            }
+            if (item.value > model[id].avilableAmount) {
+                const label = newDeliveryItem.querySelector('.label-num')
+                label.innerText = model[id].avilableAmount
+            }
+            // Cоздание элементов на следующую дату
+            // if (nextDateGoods > 0) {
+            //     document.querySelector('.second-title').classList.remove('none')
+            //     deliveryItemsSecondDay.classList.remove('none')
+
+            //     const secondDeliveryItem = document.createElement('div')
+            //     secondDeliveryItem.classList.add('delivery-item')
+            //     secondDeliveryItem.innerHTML = deliveryItem
+            //     const image = secondDeliveryItem.querySelector('.delivery-img')
+            //     image.setAttribute('src', currentPicture)
+            //     secondDeliveryItem.setAttribute('data-id', model[id].id)
+
+            //     const label = secondDeliveryItem.querySelector('.label-num')
+            //     label.innerText = nextDateGoods
+            //     deliveryItemsSecondDay.append(secondDeliveryItem)
+            // }
+        }
+    })
+}
+
+
+function deliveryCardCheck() {
+    const allDeliveryItems = document.querySelectorAll('.delivery-item')
+    allDeliveryItems.forEach(function (item) {
+
+        const currentItem = item.querySelector('.label-num')
+        const basketItem = basketList.querySelector(`[data-id="${item.dataset.id}"]`)
+
+        if (item.dataset.id === basketItem.dataset.id) {
+            const id = item.dataset.id
+            const counter = basketItem.querySelector('#inputCounter')
+            const nextDateGoods = parseInt(counter.value) - parseInt(model[id].avilableAmount)
+
+            currentItem.innerText = counter.value
+
+            if (parseInt(currentItem.innerText) > 1) {
+                currentItem.classList.remove('none')
+                currentItem.parentElement.classList.remove('none')
+            }
+            if (1 <= counter.value <= model[id].avilableAmount) {
+                const label = item.querySelector('.label-num')
+                label.innerText = counter.value
+            }
+            if (parseInt(counter.value) === 1) {
+                item.querySelector('.items-img__label').classList.add('none')
+            }
+            if (counter.value > model[id].avilableAmount) {
+                const label = item.querySelector('.label-num')
+                label.innerText = model[id].avilableAmount
+                // if (nextDateGoods > 0) {
+                //     const currentPicture = basketItem.querySelector('.item-img').getAttribute('src')
+                //     document.querySelector('.second-title').classList.remove('none')
+                //     deliveryItemsSecondDay.classList.remove('none')
+
+                //     const secondDeliveryItem = document.createElement('div')
+                //     secondDeliveryItem.classList.add('delivery-item')
+                //     secondDeliveryItem.innerHTML = deliveryItem
+                //     const image = secondDeliveryItem.querySelector('.delivery-img')
+                //     image.setAttribute('src', currentPicture)
+                //     secondDeliveryItem.setAttribute('data-id', model[id].id)
+
+                //     const label = secondDeliveryItem.querySelector('.label-num')
+                //     label.innerText = nextDateGoods
+                //     deliveryItemsSecondDay.append(secondDeliveryItem)
+                // }
+            }
+        }
+    })
+}
+function overAmountCard(nextDateGoods) {
     if (nextDateGoods > 0) {
+        const currentPicture = currentItem.querySelector('.item-img').getAttribute('src')
         document.querySelector('.second-title').classList.remove('none')
         deliveryItemsSecondDay.classList.remove('none')
 
@@ -292,11 +376,14 @@ function initialDeliveryCheck(currentItem,id, item){
         secondDeliveryItem.innerHTML = deliveryItem
         const image = secondDeliveryItem.querySelector('.delivery-img')
         image.setAttribute('src', currentPicture)
+        secondDeliveryItem.setAttribute('data-id', model[id].id)
 
         const label = secondDeliveryItem.querySelector('.label-num')
         label.innerText = nextDateGoods
         deliveryItemsSecondDay.append(secondDeliveryItem)
-    }}
+    }
+}
+
 function totalMissing() {
     const allMissingItems = missingSection.querySelectorAll('.missing-item')
     let totalCount = 0
@@ -320,6 +407,7 @@ function isChecked(event) {
         }
         )
     }
+    deliveryCardCheck()
     sidebarTotalSum()
 }
 

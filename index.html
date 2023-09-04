@@ -46,6 +46,11 @@
                     </div>
                 </div>
             </div>
+            <div class="header__container-mobile">
+                <div class="burger-mobile"></div>
+                <div class="logo-mobile">Товары и точка</div>
+                <div class="search-mobile"></div>
+            </div>
             <div class="headline-background">
                 <div class="headline"></div>
             </div>
@@ -90,16 +95,18 @@
                     <section class="ordering__list basket__list">
                         <div class="ordering__delivery">
                             <div class="delivery-wrapper">
-                                <div class="ordering__header">
-                                    <div class="ordering__title">Способ доставки</div>
-                                    <div class="ordering__change-button" data-open-button="adress">Изменить</div>
-                                </div>
-                                <div class="ordering__body">
+                                <div class="delivery-content__wrapper">
+                                    <div class="ordering__header">
+                                        <div class="ordering__title">Способ доставки</div>
+                                        <div class="ordering__change-button" data-open-button="adress">Изменить</div>
+                                    </div>
+
                                     <div class="ordering-grid">
                                         <div class="pickup-title description-title">Пункт выдачи</div>
                                         <div class="pickup-description">
-                                            <div class="description-adress">
-                                                <div class="ordering-description__text description-text">Бишкек, улица
+                                            <div class="description-adress description-column">
+                                                <div class="ordering-description__text description-text">Бишкек,
+                                                    улица
                                                     Ахматбека
                                                     Суюмбаева,
                                                     12/1
@@ -109,26 +116,29 @@
                                                         <div class="rating-icon"></div>
                                                         <div class="rating">4.99</div>
                                                     </div>
-                                                    <div class="adress-time adress-rating">Ежедневно с 10 до 21</div>
+                                                    <div class="adress-time adress-rating">Ежедневно с 10 до 21
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="delivery-price description-title">Стоимость доставки</div>
-                                        <div class="delivery-description description-text">Бесплатно</div>
+                                        <div class="delivery-description description-text description-column">Бесплатно
+                                        </div>
                                         <div class="description-title first-title">5—6 февраля</div>
                                         <div class="delivery-date__items first-date">
 
                                         </div>
-                                        <div class="description-title second-title none">7—8 февраля</div>
-                                        <div class="delivery-date__items second-date none">
+                                        <div class="description-title second-title ">7—8 февраля</div>
+                                        <div class="delivery-date__items second-date ">
 
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="delivery__returning">
                                     <div class="shipping-icon returning-icon"></div>
                                     <div class="returning-text h4">Обратная доставка товаров на склад при отказе —
-                                        <h10 id="shippingNote1" class="shipping-note returning-note h4 popup">бесплатно
+                                        <h10 id="shippingNote1" class="returning-note h4 popup">бесплатно
                                             <span class="dashed-bottom green"></span>
                                         </h10>
                                     </div>
@@ -178,7 +188,8 @@
                                         <div class="recipient__input mail">
                                             <label class="input-label"></label>
                                             <div class="input-text">
-                                                <input type="text" class="input-recipient" placeholder="Почта">
+                                                <input type="text" class="input-recipient"
+                                                    placeholder="Электронная почта">
                                                 <span class="input-underline"></span>
                                                 <label class="name-error error"></label>
                                             </div>

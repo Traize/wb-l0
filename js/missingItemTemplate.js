@@ -14,7 +14,7 @@ export const missingEl = missingModel
                             </div>
                         </div>
                     </div>
-                        <div class="list-item__price-block">
+                        <div class="list-item__price-block missing__mobile-action">
                             <div class="missing-items__actions">
                                 <div class="goods-actions">
                                     <button class="fav-btn" data-action="favorite"></button>
