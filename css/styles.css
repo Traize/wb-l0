@@ -913,6 +913,7 @@ section {
     gap: 6px;
 }
 
+
 .amount-more {
     display: flex;
     height: 28px;
@@ -2353,6 +2354,9 @@ section {
 }
 
 /* misc */
+.price-block__money-mobile {
+    display: none;
+}
 
 .none {
     display: none !important;
@@ -2379,9 +2383,6 @@ section {
     color: #000;
 }
 
-.price-block__money-mobile {
-    display: none;
-}
 
 @media screen and (max-width: 1399px) {
 
@@ -2641,7 +2642,7 @@ section {
     }
 
     .basket-list__items {
-        display: flex;
+
         width: 288px;
         flex-direction: column;
         align-items: flex-start;
@@ -3040,6 +3041,10 @@ section {
         font-weight: 400;
         line-height: 24px;
         /* 150% */
+    }
+
+    .all-lists-closed {
+        gap: 16px;
     }
 
     .adress-wrapper {

@@ -116,13 +116,15 @@ function toggleHeaderIcon(event) {
 }
 
 basketList.addEventListener('click', function (event) {
-    let counter, price, id, discount
+    let counter, price, id, discount, priceMobile
     let sum, sumDiscount = 0
 
     if (event.target.dataset.action === 'decrement' || event.target.dataset.action === 'increment' || event.target.dataset.action === 'input') {
         const counterBlock = event.target.closest('#counter')
         const priceBlock = event.target.closest('.list-item__price-block')
         price = priceBlock.querySelector('.price-amount')
+        const basketItem = priceBlock.closest('#basketItem')
+        priceMobile = basketItem.querySelector('.price-amount-mobile')
         discount = priceBlock.querySelector('.discount-price')
         counter = counterBlock.querySelector('#inputCounter')
         id = counterBlock.dataset.id
@@ -141,6 +143,7 @@ basketList.addEventListener('click', function (event) {
             const discountPrice = parseInt(counter.value) * parseFloat(model[id].oldPrice)
             sum = totalPrice
             price.innerText = formatter.format(sum)
+            priceMobile.innerText = formatter.format(sum)
             sumDiscount = discountPrice
             discount.innerText = formatter.format(sumDiscount)
             sidebarTotalSum()
@@ -159,6 +162,7 @@ basketList.addEventListener('click', function (event) {
             const totalPrice = parseInt(counter.value) * parseFloat(model[id].newPrice)
             sum = totalPrice
             price.innerText = formatter.format(sum)
+            priceMobile.innerText = formatter.format(sum)
             const discountPrice = parseInt(counter.value) * parseFloat(model[id].oldPrice)
             sumDiscount = discountPrice
             discount.innerText = formatter.format(sumDiscount)
@@ -175,6 +179,7 @@ basketList.addEventListener('click', function (event) {
             const discountPrice = parseInt(counter.value) * parseFloat(model[id].oldPrice)
             sum = totalPrice
             price.innerText = formatter.format(sum)
+            priceMobile.innerText = formatter.format(sum)
             // Цена без скидки
             sumDiscount = discountPrice
             discount.innerText = formatter.format(sumDiscount)
@@ -195,7 +200,7 @@ basketList.addEventListener('click', function (event) {
             const totalPrice = parseInt(counter.value) * parseFloat(model[id].newPrice)
             sum = totalPrice
             price.innerText = formatter.format(sum)
-
+            priceMobile.innerText = formatter.format(sum)
             sumDiscount = discountPrice
             discount.innerText = formatter.format(sumDiscount)
             sidebarTotalSum()
