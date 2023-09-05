@@ -461,8 +461,9 @@ function deliveryCardCheck() {
     }
 }
 
-const mobileMenu = document.querySelector('.mobile-tab')
+
 function totalItemsInBasket() {
+    const mobileMenu = document.querySelector('.mobile-tab')
     const checkboxes = basketList.querySelectorAll('#select-one')
     let count = 0
     checkboxes.forEach(item => {
@@ -473,12 +474,12 @@ function totalItemsInBasket() {
     if (count > 0) {
         mobileMenu.querySelector('.notification-wrapper').classList.remove('none')
         headerNotification.closest('.notification-wrapper').classList.remove('none')
-        return (headerNotification.innerText = count,
-            mobileMenu.querySelector('.notification').innerText = count)
+        headerNotification.innerText = count
+        mobileMenu.querySelector('.notification').innerText = count
     }
     else {
         headerNotification.closest('.notification-wrapper').classList.add('none')
-        mobileMenu.querySelector('.notification-wrapper').classList.remove('none')
+        mobileMenu.querySelector('.notification-wrapper').classList.add('none')
     }
 
 }
