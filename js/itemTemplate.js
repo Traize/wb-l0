@@ -11,6 +11,7 @@ export const newEl = model
                                 <span class="custom-checkbox__decor" ></span>
                             </label>
                         </div>
+                        <div class="mobile-size ${!(item.mobileSize) ? "mobile-size-hidden" : ""}">${item.mobileSize}</div>
                         <div class="img-wrapper"><img src="${item.img}" class="item-img"></img></div>
                     </div>
                         <div id="listItemDescription" class="list-item__description">

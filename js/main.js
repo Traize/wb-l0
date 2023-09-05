@@ -433,7 +433,7 @@ function deliveryCardCheck() {
     })
 }
 
-
+const mobileMenu = document.querySelector('.mobile-tab')
 function totalItemsInBasket() {
     const checkboxes = basketList.querySelectorAll('#select-one')
     let count = 0
@@ -443,10 +443,15 @@ function totalItemsInBasket() {
         }
     })
     if (count > 0) {
+        mobileMenu.querySelector('.notification-wrapper').classList.remove('none')
         headerNotification.closest('.notification-wrapper').classList.remove('none')
-        return headerNotification.innerText = count
+        return (headerNotification.innerText = count,
+            mobileMenu.querySelector('.notification').innerText = count)
     }
-    else headerNotification.closest('.notification-wrapper').classList.add('none')
+    else {
+        headerNotification.closest('.notification-wrapper').classList.add('none')
+        mobileMenu.querySelector('.notification-wrapper').classList.remove('none')
+    }
 
 }
 function totalMissing() {
@@ -766,4 +771,5 @@ allPopupsBtn.forEach(function (item) {
         event.target.querySelector('.info-popup__wraper').classList.add('none')
     }
 })
+
 

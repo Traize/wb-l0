@@ -7,6 +7,7 @@ export const model = [
             color: 'Цвет: белый',
             size: 'Размер: 56',
         },
+        mobileSize: '56',
         store: 'Коледино WB',
         marketplace: 'OOO Вайлдберриз',
         stock: '2',
