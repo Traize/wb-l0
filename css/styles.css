@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'Segoe UI';
-    src: url(/fonts/segoeui.ttf);
+    font-family: "SegoeUi";
+    src: url("https://fontsforyou.com/fonts/s/SegoeUi.ttf");
 }
 
 html {
     box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', "SegoeUi";
     background-color: var(--violet-color);
 }
 
@@ -2537,7 +2537,7 @@ section {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 720px) {
     .header__container {
         display: none;
     }
