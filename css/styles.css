@@ -1,11 +1,27 @@
 @font-face {
-    font-family: "SegoeUi";
-    src: url("https://fontsforyou.com/fonts/s/SegoeUi.ttf");
+    font-family: 'SegoeUi';
+    src: url("../fonts/SegoeUi.ttf");
+    /* src: url('../fonts/segoeuib.ttf');
+    src: url('../fonts/seguibl.ttf');
+    src: url(../fonts/seguisb.ttf); */
+}
+
+@font-face {
+    font-family: 'SegoeUi Bold';
+
+    src: url('../fonts/segoeuib.ttf');
+    /* src: url('../fonts/seguibl.ttf');
+    src: url(../fonts/seguisb.ttf); */
+}
+
+@font-face {
+    font-family: 'SegoeUi Semi-Bold';
+    src: url(../fonts/seguisb.ttf);
 }
 
 html {
     box-sizing: border-box;
-    font-family: 'Segoe UI', "SegoeUi";
+    font-family: 'Segoe UI', 'SegoeUi';
     background-color: var(--violet-color);
 }
 
@@ -72,7 +88,7 @@ section {
 
 .h1 {
     color: var(--black-color);
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 28px;
     font-style: normal;
     font-weight: 700;
@@ -100,7 +116,7 @@ section {
 
 .h5 {
     color: var(--black-color);
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
@@ -110,7 +126,7 @@ section {
 
 .h6 {
     color: var(--black-color);
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -120,7 +136,7 @@ section {
 .h7 {
     color: var(--black-color);
     text-align: right;
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -211,6 +227,7 @@ section {
 }
 
 .logo-p {
+    font-family: 'SegoeUi Semi-Bold', Segoe UI;
     color: white;
     font-size: 28px;
     font-style: normal;
@@ -360,6 +377,7 @@ section {
     font-size: 10px;
     font-weight: 700;
     margin: 0px 0px 2px;
+    font-family: 'SegoeUi Bold';
 }
 
 /* Body */
@@ -486,7 +504,7 @@ section {
     gap: 8px;
     flex: 1 0 0;
     color: var(--text-black, #000);
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Semi-Bold';
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -574,7 +592,7 @@ section {
 .total__sum {
     display: flex;
     color: var(--text-black, #000);
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Semi-Bold';
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -722,7 +740,7 @@ section {
     align-self: stretch;
     color: var(--text-black, #000);
     text-align: right;
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -910,7 +928,7 @@ section {
     justify-content: center;
     color: var(--text-black, #000);
     text-align: right;
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -1273,7 +1291,7 @@ section {
     color: var(--system-white, #FFF);
     text-align: center;
     align-self: stretch;
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -1332,7 +1350,7 @@ section {
     gap: 8px;
     flex: 1 0 0;
     color: var(--text-black, #000);
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Semi-Bold';
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -1344,7 +1362,7 @@ section {
     margin: 1px 1px 0 0;
     color: var(--text-black, #000);
     text-align: right;
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -1469,7 +1487,7 @@ section {
 
 .ordering__title {
     color: var(--text-black, #000);
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
@@ -1486,7 +1504,7 @@ section {
 
     color: var(--system-magenta, #CB11AB);
     text-align: right;
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -1615,7 +1633,7 @@ section {
 
 .description-title {
     color: var(--text-black, #000);
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Semi-Bold';
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -1676,7 +1694,7 @@ section {
 .label-num {
     color: var(--text-white, #FFF);
     text-align: center;
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Semi-Bold';
     font-size: 10px;
     font-style: normal;
     font-weight: 600;
@@ -1698,7 +1716,7 @@ section {
 
 .ordering-title__text {
     color: var(--text-black, #000);
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Semi-Bold';
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -1997,7 +2015,7 @@ section {
 .modal-title {
     width: 100%;
     color: var(--text-black, #000);
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -2076,7 +2094,7 @@ section {
 .modal-content__title {
     width: 100%;
     color: var(--text-black, #000);
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 13px;
     font-style: normal;
     font-weight: 700;
@@ -2218,7 +2236,7 @@ section {
 .modal-btn-text {
     color: var(--background-white, #FFF);
     text-align: center;
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -2328,7 +2346,7 @@ section {
 
 .info-company {
     color: var(--light-system-text, #000);
-    font-family: Segoe UI;
+    font-family: Segoe UI, 'SegoeUi Bold';
     font-size: 13px;
     font-style: normal;
     font-weight: 700;
@@ -2569,7 +2587,7 @@ section {
         flex: 1 0 0;
         align-self: stretch;
         color: var(--system-white, #FFF);
-        font-family: Segoe UI;
+        font-family: Segoe UI, 'SegoeUi Semi-Bold';
         font-size: 26px;
         font-style: normal;
         font-weight: 600;
@@ -2793,7 +2811,7 @@ section {
         color: var(--text-black, #000);
 
         /* Мобильный сайт/H2 */
-        font-family: Segoe UI;
+        font-family: Segoe UI, 'SegoeUi Bold';
         font-size: 20px;
         font-style: normal;
         font-weight: 700;
@@ -2805,7 +2823,7 @@ section {
     .h7 {
         color: var(--text-black, #000);
         text-align: right;
-        font-family: Segoe UI;
+        font-family: Segoe UI, 'SegoeUi Bold';
         font-size: 16px;
         font-style: normal;
         font-weight: 700;
@@ -2888,7 +2906,7 @@ section {
     .ordering__title {
         color: var(--text-black, #000);
 
-        font-family: Segoe UI;
+        font-family: Segoe UI, 'SegoeUi Bold';
         font-size: 20px;
         font-style: normal;
         font-weight: 700;
@@ -3010,7 +3028,7 @@ section {
         color: var(--text-black, #000);
 
         /* Сайт/Н3-new */
-        font-family: Segoe UI;
+        font-family: Segoe UI, 'SegoeUi Bold';
         font-size: 20px;
         font-style: normal;
         font-weight: 700;
@@ -3031,7 +3049,7 @@ section {
         color: var(--text-black, #000);
 
         /* Сайт/Н3-new */
-        font-family: Segoe UI;
+        font-family: Segoe UI, 'SegoeUi Bold';
         font-size: 20px;
         font-style: normal;
         font-weight: 700;
