@@ -1983,7 +1983,7 @@ section {
     left: 0;
     right: 0;
     background-color: rgba(5, 0, 10, 0.30);
-    ;
+    z-index: 100;
 }
 
 .modal-wrapper {
@@ -2035,7 +2035,7 @@ section {
 
 .modal-body__wrapper {
     display: flex;
-    padding: 0px 22px;
+    padding: 0;
     flex-direction: column;
     align-items: center;
     gap: 24px;
@@ -2392,7 +2392,10 @@ section {
     border-radius: 7px;
     justify-content: center;
     align-items: center;
+    z-index: 7;
 }
+
+
 
 .mobile-size-hidden {
     display: none;
@@ -2617,7 +2620,8 @@ section {
 
 
     .layout-wrapper {
-        width: 320px;
+        min-width: 320px;
+        max-width: 100%;
         display: inline-flex;
         flex-direction: column;
         align-items: flex-start;
@@ -2625,36 +2629,43 @@ section {
     }
 
     .footer {
-        width: 320px;
+        min-width: 320px;
+        max-width: 100%;
         padding-bottom: 56px;
     }
 
     .basket-columns {
-        width: 320px;
+        min-width: 320px;
+        max-width: 100%;
         gap: 38px
     }
 
     .basket__list {
-        width: 288px;
+        min-width: 288px;
+        max-width: 100%;
     }
 
     .missing__list {
-        width: 288px;
+        min-width: 288px;
+        max-width: 100%;
     }
 
     .recipient-body {
-        width: 288px;
+        min-width: 288px;
+        max-width: 100%;
         gap: 9px;
     }
 
 
     .basket__sidebar {
-        width: 320px;
+        min-width: 320px;
+        max-width: 100%;
     }
 
     .basket__page-wrap {
         display: flex;
-        width: 320px;
+        min-width: 320px;
+        max-width: 100%;
         padding: 0;
         flex-direction: column;
         align-items: center;
@@ -2664,28 +2675,32 @@ section {
     }
 
     .all-lists {
+        padding: 0 16px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         align-self: stretch;
-        width: 288px;
+        min-width: 288px;
+        max-width: 100%;
         gap: 48px;
         margin: 0 auto;
     }
 
     .basket__content {
         gap: 16px;
-        width: 320px
+        min-width: 320px;
+        max-width: 100%;
     }
 
     .basket__lists {
-        width: 288px;
+        min-width: 288px;
+        max-width: 100%;
 
     }
 
     .basket-list__items {
 
-        width: 288px;
+        min-width: 288px;
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
@@ -2701,6 +2716,7 @@ section {
 
     .list-item__price-block {
         width: 288px;
+        max-min-width: 100%;
     }
 
     .list-item__description {
@@ -2715,7 +2731,7 @@ section {
     }
 
     .item-template {
-        width: 288px;
+        min-width: 288px;
         display: flex;
         gap: 1px;
         flex-direction: column;
@@ -2725,11 +2741,13 @@ section {
     }
 
     .list__header {
-        width: 286px;
+        min-width: 286px;
+        max-width: 100%;
     }
 
     .list-item {
         width: 288px;
+        max-width: 100%;
     }
 
 
@@ -2905,7 +2923,8 @@ section {
 
     .missing-items__actions {
         padding-top: 0;
-        width: 296px;
+        min-width: 296px;
+        max-width: 100%;
     }
 
     .missing__mobile-action {
@@ -2935,7 +2954,8 @@ section {
     }
 
     .ordering__delivery {
-        width: 320px;
+        min-width: 320px;
+        max-width: 100%;
         gap: 12px;
     }
 
@@ -3098,7 +3118,8 @@ section {
 
     .shipping-text {
         position: relative;
-        width: 240px;
+        min-width: 240px;
+        max-width: 100%;
     }
 
     .adress__shipping {
@@ -3121,6 +3142,10 @@ section {
         bottom: 4px;
         left: 4px;
         border-radius: 6px;
+        padding: 0 4px;
+        width: fit-content;
+
+        font-size: 14px;
     }
 
     .mobile-size-hidden {
@@ -3156,12 +3181,29 @@ section {
     }
 
     .modal-wrapper {
-        width: 320px;
+        padding: 0 14px;
+        min-width: 320px;
+        max-width: 100%;
         height: auto;
+        overflow: scroll;
+        overflow-x: hidden;
+        max-height: 100%;
+        border-radius: 0px;
+        z-index: 200;
+    }
+
+    .modal-btn {
+        width: 100%;
+    }
+
+    .modal-btn__wrapper {
+        width: 100%;
+        padding-top: 111px;
+
     }
 
     .mobile-tab {
-        min-width: 320px;
+        min-width: 100%;
         position: fixed;
         bottom: 0vh;
         display: flex;
@@ -3170,7 +3212,7 @@ section {
         justify-content: space-between;
         align-items: center;
         align-self: stretch;
-
+        z-index: 20;
         background: var(--background-white, #FFF);
 
         box-shadow: 0px -0.5px 0px 0px rgba(0, 0, 0, 0.30);
@@ -3202,5 +3244,34 @@ section {
 
     .main-tab {
         background-image: url(../src/mobile/main.svg)
+    }
+
+    .props-size {
+        display: none;
+    }
+
+    .radio-wrapper {
+
+        align-self: flex-start;
+    }
+
+    .radio-text {
+        width: 105%;
+    }
+
+    .radio-del {
+        margin: 8px 0;
+    }
+
+    .radio-del__wrapper {
+        padding: 0;
+    }
+
+    .modal-footer {
+        padding: 16px 0px 24px 0px;
+    }
+
+    .modal-header {
+        padding: 16px 0px 13px 0px
     }
 }
