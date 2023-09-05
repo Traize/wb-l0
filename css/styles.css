@@ -1986,6 +1986,10 @@ section {
     z-index: 100;
 }
 
+.modal-tab {
+    display: none;
+}
+
 .modal-wrapper {
     display: flex;
     width: 500px;
@@ -2426,6 +2430,27 @@ section {
     color: #000;
 }
 
+.mobile-tab {
+    display: none;
+}
+
+.u1 {
+    top: 32px;
+    right: 293px;
+    width: 66px;
+}
+
+.u2 {
+    bottom: 15px;
+    right: 67px;
+    width: 214px;
+}
+
+.u3 {
+    bottom: -1px;
+    right: 225px;
+    width: 52px;
+}
 
 @media screen and (max-width: 1399px) {
 
@@ -3273,5 +3298,149 @@ section {
 
     .modal-header {
         padding: 16px 0px 13px 0px
+    }
+}
+
+@media screen and (min-width: 1600px) {
+
+    .footer {
+        width: 100%;
+    }
+
+    .layout-wrapper {
+        min-width: 1400px;
+        width: 100%;
+    }
+
+    .header__search {
+        width: 1200px;
+    }
+
+    .basket-columns {
+        width: 100%;
+    }
+
+    .basket__list {
+        width: 100%;
+    }
+
+    .basket__lists {
+        width: 100%;
+    }
+
+    .missing__list {
+        width: 100%;
+    }
+
+    .recipient-body {
+        width: 90%;
+    }
+
+
+    .basket__sidebar {}
+
+    .shipping-icon {
+        margin-top: -3px;
+        width: 22px;
+        height: 22px;
+        background-image: url(../src/sidebar/priceShipping.svg);
+        background-repeat: no-repeat;
+    }
+
+    .shipping-note {
+        position: absolute;
+        bottom: -2px;
+        right: -20px;
+    }
+
+    .shipping-text {
+        position: relative;
+        width: 75%;
+    }
+
+    .adress__shipping {
+
+        padding: 8px 8px 12px 8px;
+    }
+
+    .sidebar__order {}
+
+    .outlined-text {
+        width: 90%;
+        margin-top: -1px;
+    }
+
+    .all-lists {
+        width: 100%;
+    }
+
+    .adress__header {
+        margin-bottom: -1px;
+    }
+
+
+    .adress__where {
+        margin-top: 2px;
+    }
+
+    .agree-text {
+        margin-top: 1px
+    }
+
+    .shipping-text {
+        position: relative;
+    }
+
+    .shipping-note {
+        position: absolute;
+        top: 16px;
+        right: -20px;
+    }
+
+    .returning-text {
+        position: relative;
+    }
+
+    .returning-note {
+        position: absolute;
+        bottom: 0px;
+        right: -68px;
+    }
+
+    .shipping-text {
+        position: relative;
+    }
+
+    .shipping-note {
+        position: absolute;
+        top: 16px;
+        right: -20px;
+    }
+
+    .returning-text {
+        position: relative;
+    }
+
+
+    .u1 {
+        top: 32px;
+        right: 293px;
+        width: 66px;
+    }
+
+    .u2 {
+        bottom: 15px;
+        right: 67px;
+        width: 214px;
+    }
+
+    .u3 {
+        bottom: -1px;
+        right: 225px;
+        width: 52px;
+    }
+
+    .header__container {
+        justify-content: space-evenly;
     }
 }

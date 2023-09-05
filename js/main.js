@@ -60,14 +60,13 @@ function deleteItem(event) {
         sidebarTotalSum()
         sidebarWithoutDiscount()
         calcDiscount()
+
         parentItem.remove()
 
 
     }
-
-
-
 }
+
 function deleteMissingItem(event) {
     if (event.target.dataset.action === 'delete') {
         const parentItem = event.target.closest('#missingItem')
@@ -344,11 +343,21 @@ function initialDeliveryCardCreate() {
 
 
 function deliveryCardCheck() {
+    const firstDateTitle = document.querySelector('.first-title')
+    const secondDateTitle = document.querySelector('.second-title')
+    const firstDateBlock = document.querySelector('.first-date')
+    const secondDateBlock = document.querySelector('.second-date')
     const allDeliveryItems = document.querySelectorAll('.delivery-item')
+    const allFirstDateItems = deliveryItemsFirstDay.querySelectorAll('.delivery-item')
+    const allSecondDateItems = deliveryItemsSecondDay.querySelectorAll('.delivery-item')
+    let isContainsFirst = true
+    let isContainsSecond = true
     allDeliveryItems.forEach(function (item) {
 
         const currentItem = item.querySelector('.label-num')
         const basketItem = basketList.querySelector(`[data-id="${item.dataset.id}"]`)
+
+
         if (basketItem) {
             if (basketItem.querySelector('.real-checkbox').checked === false) {
                 if (item.dataset.id === basketItem.dataset.id) {
@@ -356,6 +365,7 @@ function deliveryCardCheck() {
                 }
             }
             else item.classList.remove('none')
+
 
             if (item.dataset.id === basketItem.dataset.id) {
                 const id = item.dataset.id
@@ -389,7 +399,6 @@ function deliveryCardCheck() {
                 if (counter.value >= model[id].avilableAmount) {
                     const label = item.querySelector('.label-num')
                     label.innerText = model[id].avilableAmount
-
                 }
                 const secondItemById = document.querySelector('.second-date').querySelector(`[data-id="${id}"]`)
                 if (secondItemById) {
@@ -414,23 +423,42 @@ function deliveryCardCheck() {
                         secondItemById.classList.add('none')
                         deliveryItemsSecondDay.classList.add('none')
                         secondItemById.querySelector('.items-img__label').classList.add('none')
-
                     }
                 }
 
-                // else {
-                //     secondItemById.querySelector('.items-img__label').classList.remove('none')
-                //     document.querySelector('.second-title').classList.remove('none')
-                //     secondItemById.classList.remove('none')
-                //     deliveryItemsSecondDay.classList.remove('none')
-
-                // }
-
-
-
             }
         }
+
+    }
+    )
+
+
+    allSecondDateItems.forEach(function (item) {
+        if (!item.classList.contains('none')) {
+            isContainsSecond = false
+        }
     })
+    if (isContainsSecond) {
+        secondDateTitle.classList.add('none')
+        secondDateBlock.classList.add('none')
+    }
+    else {
+        secondDateTitle.classList.remove('none')
+        secondDateBlock.classList.remove('none')
+    }
+    allFirstDateItems.forEach(function (item) {
+        if (!item.classList.contains('none')) {
+            isContainsFirst = false
+        }
+    })
+    if (isContainsFirst) {
+        firstDateTitle.classList.add('none')
+        firstDateBlock.classList.add('none')
+    }
+    else {
+        firstDateTitle.classList.remove('none')
+        firstDateBlock.classList.remove('none')
+    }
 }
 
 const mobileMenu = document.querySelector('.mobile-tab')
@@ -469,10 +497,10 @@ function isChecked(event) {
     if (event.target.dataset.action === 'select-all') {
         checkboxes.forEach(function (item) {
             item.checked = headerCheckbox.checked
-
         }
         )
     }
+    checkAllCheckboxes()
     deliveryCardCheck()
     sidebarTotalSum()
     totalItemsInBasket()
