@@ -21,6 +21,9 @@ const bodyDeliveryPopup = document.querySelector('#shippingNote1')
 const sidebarDeliveryPopup = document.querySelector('#shippingNote2')
 const deliveryItemsFirstDay = document.querySelector('.first-date')
 const deliveryItemsSecondDay = document.querySelector('.second-date')
+const headerNotification = document.querySelector('.notification')
+
+
 
 bodyDeliveryPopup.insertAdjacentHTML('beforeend', deliveryPopup1)
 sidebarDeliveryPopup.insertAdjacentHTML('beforeend', deliveryPopup2)
@@ -45,6 +48,7 @@ window.addEventListener('load', sidebarTotalGoods)
 window.addEventListener('load', calcDiscount)
 window.addEventListener('load', missingRecount)
 window.addEventListener('load', deliveryCardCheck)
+window.addEventListener('load', totalItemsInBasket)
 
 function deleteItem(event) {
     if (event.target.dataset.action === 'delete') {
@@ -222,7 +226,6 @@ function totalBasketSum() {
         checkbox = currentItem.querySelector('#select-one')
         if (checkbox.checked) {
             totalSum += (parseInt((item.innerText).replace(/\D/g, '')))
-
             // Обовление внутри кнопки сайдбара
             const sidebarCheckbox = sidebar.querySelector('.real-checkbox')
             const sidebarBtn = sidebar.querySelector('.order-btn__text')
@@ -257,6 +260,7 @@ function totalGoods() {
         currentItem = item.closest('#basketItem')
         checkbox = currentItem.querySelector('#select-one')
         if (checkbox.checked) {
+
             totalGoods += (parseInt((item.value).replace(/\D/g, '')))
 
 
@@ -287,7 +291,6 @@ function initialDeliveryCardCreate() {
             image.setAttribute('src', currentPicture)
 
 
-
             deliveryItemsFirstDay.append(newDeliveryItem)
             // проверка элементов
             if (1 <= item.value <= model[id].avilableAmount) {
@@ -302,21 +305,24 @@ function initialDeliveryCardCreate() {
                 label.innerText = model[id].avilableAmount
             }
             // Cоздание элементов на следующую дату
-            // if (nextDateGoods > 0) {
-            //     document.querySelector('.second-title').classList.remove('none')
-            //     deliveryItemsSecondDay.classList.remove('none')
+            const nextDateGoods = parseInt(item.value) - parseInt(model[id].avilableAmount)
+            if (nextDateGoods > 0) {
+                const nextDateGoods = parseInt(item.value) - parseInt(model[id].avilableAmount)
 
-            //     const secondDeliveryItem = document.createElement('div')
-            //     secondDeliveryItem.classList.add('delivery-item')
-            //     secondDeliveryItem.innerHTML = deliveryItem
-            //     const image = secondDeliveryItem.querySelector('.delivery-img')
-            //     image.setAttribute('src', currentPicture)
-            //     secondDeliveryItem.setAttribute('data-id', model[id].id)
+                document.querySelector('.second-title').classList.remove('none')
+                deliveryItemsSecondDay.classList.remove('none')
 
-            //     const label = secondDeliveryItem.querySelector('.label-num')
-            //     label.innerText = nextDateGoods
-            //     deliveryItemsSecondDay.append(secondDeliveryItem)
-            // }
+                const secondDeliveryItem = document.createElement('div')
+                secondDeliveryItem.classList.add('delivery-item')
+                secondDeliveryItem.innerHTML = deliveryItem
+                const image = secondDeliveryItem.querySelector('.delivery-img')
+                image.setAttribute('src', currentPicture)
+                secondDeliveryItem.setAttribute('data-id', model[id].id)
+
+                const label = secondDeliveryItem.querySelector('.label-num')
+                label.innerText = nextDateGoods
+                deliveryItemsSecondDay.append(secondDeliveryItem)
+            }
         }
     })
 }
@@ -332,7 +338,7 @@ function deliveryCardCheck() {
         if (item.dataset.id === basketItem.dataset.id) {
             const id = item.dataset.id
             const counter = basketItem.querySelector('#inputCounter')
-            const nextDateGoods = parseInt(counter.value) - parseInt(model[id].avilableAmount)
+            const nextDateGoods = (parseInt(counter.value) - parseInt(model[id].avilableAmount))
 
             currentItem.innerText = counter.value
 
@@ -347,25 +353,43 @@ function deliveryCardCheck() {
             if (parseInt(counter.value) === 1) {
                 item.querySelector('.items-img__label').classList.add('none')
             }
-            if (counter.value > model[id].avilableAmount) {
+            if (counter.value >= model[id].avilableAmount) {
                 const label = item.querySelector('.label-num')
                 label.innerText = model[id].avilableAmount
+
+            }
+            const secondItemById = document.querySelector('.second-date').querySelector(`[data-id="${id}"]`)
+            if (secondItemById) {
+                const label = secondItemById.querySelector('.label-num')
+                label.innerText = nextDateGoods
+
+
+                if (nextDateGoods === 0) {
+                    document.querySelector('.second-title').classList.add('none')
+                    secondItemById.classList.add('none')
+                    deliveryItemsSecondDay.classList.add('none')
+                    secondItemById.querySelector('.items-img__label').classList.add('none')
+                    console.log(secondItemById, '2')
+                }
                 // if (nextDateGoods > 0) {
-                //     const currentPicture = basketItem.querySelector('.item-img').getAttribute('src')
-                //     document.querySelector('.second-title').classList.remove('none')
-                //     deliveryItemsSecondDay.classList.remove('none')
 
-                //     const secondDeliveryItem = document.createElement('div')
-                //     secondDeliveryItem.classList.add('delivery-item')
-                //     secondDeliveryItem.innerHTML = deliveryItem
-                //     const image = secondDeliveryItem.querySelector('.delivery-img')
-                //     image.setAttribute('src', currentPicture)
-                //     secondDeliveryItem.setAttribute('data-id', model[id].id)
 
-                //     const label = secondDeliveryItem.querySelector('.label-num')
-                //     label.innerText = nextDateGoods
-                //     deliveryItemsSecondDay.append(secondDeliveryItem)
+
+                //     console.log(nextDateGoods, '3')
                 // }
+                if (nextDateGoods === 1) {
+                    secondItemById.querySelector('.items-img__label').classList.add('none')
+                }
+                else {
+                    secondItemById.querySelector('.items-img__label').classList.remove('none')
+                    document.querySelector('.second-title').classList.remove('none')
+                    secondItemById.classList.remove('none')
+                    deliveryItemsSecondDay.classList.remove('none')
+
+                }
+
+
+
             }
         }
     })
@@ -389,17 +413,28 @@ function overAmountCard(nextDateGoods) {
     }
 }
 
+function totalItemsInBasket() {
+    const checkboxes = basketList.querySelectorAll('#select-one')
+    let count = 0
+    checkboxes.forEach(item => {
+        if (item.checked) {
+            count++
+        }
+    })
+    if (count > 0) {
+        headerNotification.closest('.notification-wrapper').classList.remove('none')
+        return headerNotification.innerText = count
+    }
+    else headerNotification.closest('.notification-wrapper').classList.add('none')
+
+}
 function totalMissing() {
     const allMissingItems = missingSection.querySelectorAll('.missing-item')
-    let totalCount = 0
-    allMissingItems.forEach(item => {
-        totalCount++
-    }
-    )
-    return totalCount
+    return allMissingItems.length
 }
 function missingRecount() {
     let missingCounter = document.querySelector('#missingTotal')
+
     missingCounter.innerText = totalMissing()
 }
 function isChecked(event) {
@@ -414,6 +449,7 @@ function isChecked(event) {
     }
     deliveryCardCheck()
     sidebarTotalSum()
+    totalItemsInBasket()
 }
 
 function paymentIsChecked() {
@@ -425,11 +461,11 @@ function paymentIsChecked() {
         chargeOff.classList.add('none')
         const totalSum = totalBasketSum()
         const formatedSum = (formatter.format(totalSum))
-        sidebarBtn.innerText = 'Оплатить ' + formatedSum + ' cом'
+        sidebarBtn.innerText = `Оплатить ${formatedSum} cом`
     }
     else {
         chargeOff.classList.remove('none')
-        sidebarBtn.innerText = 'Заказать'
+        sidebarBtn.innerText = `Заказать`
     }
 }
 
