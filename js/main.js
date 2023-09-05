@@ -500,7 +500,6 @@ function isChecked(event) {
         }
         )
     }
-    checkAllCheckboxes()
     deliveryCardCheck()
     sidebarTotalSum()
     totalItemsInBasket()
