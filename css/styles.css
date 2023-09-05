@@ -1991,6 +1991,7 @@ section {
 }
 
 .modal-wrapper {
+    padding: 0px 22px;
     display: flex;
     width: 500px;
     flex-direction: column;

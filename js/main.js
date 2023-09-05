@@ -755,6 +755,14 @@ modalForms.forEach(function (item) {
                 }
                 document.querySelector('.ordering-description__text').innerText = text
                 document.querySelector('.adress-where').innerText = text
+                if (item.closest('#pickUp')) {
+                    document.querySelector('.pickup-title').innerText = `Пункт выдачи`
+                    document.querySelector('.adress-point').innerText = `в пункт выдачи`
+                }
+                if (item.closest('#courier')) {
+                    document.querySelector('.pickup-title').innerText = `Курьером`
+                    document.querySelector('.adress-point').innerText = `курьером`
+                }
             }
         })
     }
