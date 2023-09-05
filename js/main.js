@@ -47,14 +47,26 @@ window.addEventListener('load', sidebarWithoutDiscount)
 window.addEventListener('load', sidebarTotalGoods)
 window.addEventListener('load', calcDiscount)
 window.addEventListener('load', missingRecount)
-window.addEventListener('load', deliveryCardCheck)
 window.addEventListener('load', totalItemsInBasket)
+window.addEventListener('load', deliveryCardCheck)
 
+initialDeliveryCardCreate()
 function deleteItem(event) {
     if (event.target.dataset.action === 'delete') {
         const parentItem = event.target.closest('#basketItem')
+        const checkbox = parentItem.querySelector('.real-checkbox')
+        checkbox.checked = false
+        deliveryCardCheck()
+        sidebarTotalSum()
+        sidebarWithoutDiscount()
+        calcDiscount()
         parentItem.remove()
+
+
     }
+
+
+
 }
 function deleteMissingItem(event) {
     if (event.target.dataset.action === 'delete') {
@@ -134,7 +146,7 @@ basketList.addEventListener('click', function (event) {
         id = counterBlock.dataset.id
     }
     if (event.target.dataset.action === 'input') {
-        counter.addEventListener('input', function (event) {
+        counter.addEventListener('keyup', function (event) {
             counter = event.target
             if (+counter.value >= +model[id].stock) {
                 counter.value = +model[id].stock
@@ -154,6 +166,7 @@ basketList.addEventListener('click', function (event) {
             sidebarWithoutDiscount()
             calcDiscount()
             priceClass(price)
+            deliveryCardCheck()
         })
 
 
@@ -172,8 +185,9 @@ basketList.addEventListener('click', function (event) {
             discount.innerText = formatter.format(sumDiscount)
             sidebarTotalSum()
             sidebarWithoutDiscount()
-            priceClass(price)
             calcDiscount()
+            priceClass(price)
+            deliveryCardCheck()
         }
         if (+counter.value > +model[id].stock) {
             counter.value = +model[id].stock
@@ -189,8 +203,9 @@ basketList.addEventListener('click', function (event) {
             discount.innerText = formatter.format(sumDiscount)
             sidebarTotalSum()
             sidebarWithoutDiscount()
-            priceClass(price)
             calcDiscount()
+            priceClass(price)
+
 
         }
 
@@ -211,6 +226,7 @@ basketList.addEventListener('click', function (event) {
             sidebarWithoutDiscount()
             priceClass(price)
             calcDiscount()
+            deliveryCardCheck()
 
         }
 
@@ -254,13 +270,12 @@ function totalWithoutDiscount() {
 function totalGoods() {
     const goods = document.querySelectorAll('#inputCounter')
     let totalGoods = 0
-    let checkbox, currentItem, id
+    let checkbox, currentItem
 
     goods.forEach(function (item) {
         currentItem = item.closest('#basketItem')
         checkbox = currentItem.querySelector('#select-one')
         if (checkbox.checked) {
-
             totalGoods += (parseInt((item.value).replace(/\D/g, '')))
 
 
@@ -269,11 +284,10 @@ function totalGoods() {
 
     return totalGoods
 }
-initialDeliveryCardCreate()
+
 //Отрисовка элементов в Способ доставки
 function initialDeliveryCardCreate() {
     const goods = document.querySelectorAll('#inputCounter')
-    let currentValue = 0
     let checkbox, currentItem, id
 
     // создание элементов
@@ -315,6 +329,7 @@ function initialDeliveryCardCreate() {
                 const secondDeliveryItem = document.createElement('div')
                 secondDeliveryItem.classList.add('delivery-item')
                 secondDeliveryItem.innerHTML = deliveryItem
+                secondDeliveryItem.querySelector('.items-img__label').classList.add('second-date__label')
                 const image = secondDeliveryItem.querySelector('.delivery-img')
                 image.setAttribute('src', currentPicture)
                 secondDeliveryItem.setAttribute('data-id', model[id].id)
@@ -334,59 +349,82 @@ function deliveryCardCheck() {
 
         const currentItem = item.querySelector('.label-num')
         const basketItem = basketList.querySelector(`[data-id="${item.dataset.id}"]`)
-
-        if (item.dataset.id === basketItem.dataset.id) {
-            const id = item.dataset.id
-            const counter = basketItem.querySelector('#inputCounter')
-            const nextDateGoods = (parseInt(counter.value) - parseInt(model[id].avilableAmount))
-
-            currentItem.innerText = counter.value
-
-            if (parseInt(currentItem.innerText) > 1) {
-                currentItem.classList.remove('none')
-                currentItem.parentElement.classList.remove('none')
-            }
-            if (1 <= counter.value <= model[id].avilableAmount) {
-                const label = item.querySelector('.label-num')
-                label.innerText = counter.value
-            }
-            if (parseInt(counter.value) === 1) {
-                item.querySelector('.items-img__label').classList.add('none')
-            }
-            if (counter.value >= model[id].avilableAmount) {
-                const label = item.querySelector('.label-num')
-                label.innerText = model[id].avilableAmount
-
-            }
-            const secondItemById = document.querySelector('.second-date').querySelector(`[data-id="${id}"]`)
-            if (secondItemById) {
-                const label = secondItemById.querySelector('.label-num')
-                label.innerText = nextDateGoods
-
-
-                if (nextDateGoods === 0) {
-                    document.querySelector('.second-title').classList.add('none')
-                    secondItemById.classList.add('none')
-                    deliveryItemsSecondDay.classList.add('none')
-                    secondItemById.querySelector('.items-img__label').classList.add('none')
-                    console.log(secondItemById, '2')
+        if (basketItem) {
+            if (basketItem.querySelector('.real-checkbox').checked === false) {
+                if (item.dataset.id === basketItem.dataset.id) {
+                    item.classList.add('none')
                 }
-                // if (nextDateGoods > 0) {
+            }
+            else item.classList.remove('none')
+
+            if (item.dataset.id === basketItem.dataset.id) {
+                const id = item.dataset.id
+                const counter = basketItem.querySelector('#inputCounter')
+                const nextDateGoods = (parseInt(counter.value) - parseInt(model[id].avilableAmount))
+
+                currentItem.innerText = counter.value
+                if (currentItem.innerText.length > 1) {
+                    item.querySelector('.items-img__label').classList.add('average-label')
+
+                }
+                if (currentItem.innerText.length > 2) {
+                    item.querySelector('.items-img__label').classList.add('big-label')
+
+                }
+                if (+currentItem.innerText === 1) {
+                    item.querySelector('.items-img__label').classList.add('none')
+
+                }
+
+                if (parseInt(currentItem.innerText) > 1) {
+                    currentItem.classList.remove('none')
+                    currentItem.parentElement.classList.remove('none')
+                }
+                if (1 < counter.value <= model[id].avilableAmount) {
+                    const label = item.querySelector('.label-num')
+                    label.innerText = counter.value
+                }
 
 
+                if (counter.value >= model[id].avilableAmount) {
+                    const label = item.querySelector('.label-num')
+                    label.innerText = model[id].avilableAmount
 
-                //     console.log(nextDateGoods, '3')
+                }
+                const secondItemById = document.querySelector('.second-date').querySelector(`[data-id="${id}"]`)
+                if (secondItemById) {
+                    const label = secondItemById.querySelector('.label-num')
+                    label.innerText = nextDateGoods
+                    secondItemById.querySelector('.items-img__label').classList.add('second-date__label')
+                    if (label.innerText.length < 3) {
+                        secondItemById.querySelector('.items-img__label').classList.remove('big-label')
+                    }
+                    if (nextDateGoods > 1) {
+                        secondItemById.querySelector('.items-img__label').classList.remove('none')
+
+                    }
+                    if (nextDateGoods === 1) {
+                        secondItemById.querySelector('.items-img__label').classList.add('none')
+                        document.querySelector('.second-title').classList.remove('none')
+                        secondItemById.classList.remove('none')
+                        deliveryItemsSecondDay.classList.remove('none')
+                    }
+                    if (nextDateGoods === 0) {
+                        document.querySelector('.second-title').classList.add('none')
+                        secondItemById.classList.add('none')
+                        deliveryItemsSecondDay.classList.add('none')
+                        secondItemById.querySelector('.items-img__label').classList.add('none')
+
+                    }
+                }
+
+                // else {
+                //     secondItemById.querySelector('.items-img__label').classList.remove('none')
+                //     document.querySelector('.second-title').classList.remove('none')
+                //     secondItemById.classList.remove('none')
+                //     deliveryItemsSecondDay.classList.remove('none')
+
                 // }
-                if (nextDateGoods === 1) {
-                    secondItemById.querySelector('.items-img__label').classList.add('none')
-                }
-                else {
-                    secondItemById.querySelector('.items-img__label').classList.remove('none')
-                    document.querySelector('.second-title').classList.remove('none')
-                    secondItemById.classList.remove('none')
-                    deliveryItemsSecondDay.classList.remove('none')
-
-                }
 
 
 
@@ -394,24 +432,7 @@ function deliveryCardCheck() {
         }
     })
 }
-function overAmountCard(nextDateGoods) {
-    if (nextDateGoods > 0) {
-        const currentPicture = currentItem.querySelector('.item-img').getAttribute('src')
-        document.querySelector('.second-title').classList.remove('none')
-        deliveryItemsSecondDay.classList.remove('none')
 
-        const secondDeliveryItem = document.createElement('div')
-        secondDeliveryItem.classList.add('delivery-item')
-        secondDeliveryItem.innerHTML = deliveryItem
-        const image = secondDeliveryItem.querySelector('.delivery-img')
-        image.setAttribute('src', currentPicture)
-        secondDeliveryItem.setAttribute('data-id', model[id].id)
-
-        const label = secondDeliveryItem.querySelector('.label-num')
-        label.innerText = nextDateGoods
-        deliveryItemsSecondDay.append(secondDeliveryItem)
-    }
-}
 
 function totalItemsInBasket() {
     const checkboxes = basketList.querySelectorAll('#select-one')
@@ -450,6 +471,9 @@ function isChecked(event) {
     deliveryCardCheck()
     sidebarTotalSum()
     totalItemsInBasket()
+    sidebarWithoutDiscount()
+    sidebarTotalGoods()
+    calcDiscount()
 }
 
 function paymentIsChecked() {
